@@ -15,7 +15,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="MainWindow.xaml">
+    <Page Update="StartWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="FishingWindow.xaml">

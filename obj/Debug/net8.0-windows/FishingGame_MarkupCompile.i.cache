@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 D:\Univer\Sem_04\MAPZ\FishingGame\App.xaml
-3-957158820
+3-626177931
 
-16-1479149805
+151496358057
 1981124507420
-EndWindow.xaml;FishingWindow.xaml;MainWindow.xaml;
+EndWindow.xaml;FishingWindow.xaml;StartWindow.xaml;
 
-False
+True
 

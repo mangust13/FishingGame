@@ -47,7 +47,6 @@ D:\Univer\Sem_04\Labs\MAPZ\MAPZ\FishingGame\obj\Debug\net8.0-windows\ref\Fishing
 D:\Univer\Sem_04\MAPZ\FishingGame\obj\Debug\net8.0-windows\FishingWindow.baml
 D:\Univer\Sem_04\MAPZ\FishingGame\obj\Debug\net8.0-windows\EndWindow.g.cs
 D:\Univer\Sem_04\MAPZ\FishingGame\obj\Debug\net8.0-windows\FishingWindow.g.cs
-D:\Univer\Sem_04\MAPZ\FishingGame\obj\Debug\net8.0-windows\MainWindow.g.cs
 D:\Univer\Sem_04\MAPZ\FishingGame\obj\Debug\net8.0-windows\App.g.cs
 D:\Univer\Sem_04\MAPZ\FishingGame\obj\Debug\net8.0-windows\FishingGame_MarkupCompile.cache
 D:\Univer\Sem_04\MAPZ\FishingGame\obj\Debug\net8.0-windows\FishingGame_MarkupCompile.lref
@@ -60,7 +59,6 @@ D:\Univer\Sem_04\MAPZ\FishingGame\bin\Debug\net8.0-windows\FishingGame.runtimeco
 D:\Univer\Sem_04\MAPZ\FishingGame\bin\Debug\net8.0-windows\FishingGame.dll
 D:\Univer\Sem_04\MAPZ\FishingGame\bin\Debug\net8.0-windows\FishingGame.pdb
 D:\Univer\Sem_04\MAPZ\FishingGame\obj\Debug\net8.0-windows\EndWindow.baml
-D:\Univer\Sem_04\MAPZ\FishingGame\obj\Debug\net8.0-windows\MainWindow.baml
 D:\Univer\Sem_04\MAPZ\FishingGame\obj\Debug\net8.0-windows\FishingGame.g.resources
 D:\Univer\Sem_04\MAPZ\FishingGame\obj\Debug\net8.0-windows\FishingGame.GeneratedMSBuildEditorConfig.editorconfig
 D:\Univer\Sem_04\MAPZ\FishingGame\obj\Debug\net8.0-windows\FishingGame.AssemblyInfoInputs.cache
@@ -68,3 +66,6 @@ D:\Univer\Sem_04\MAPZ\FishingGame\obj\Debug\net8.0-windows\FishingGame.AssemblyI
 D:\Univer\Sem_04\MAPZ\FishingGame\obj\Debug\net8.0-windows\FishingGame.csproj.CoreCompileInputs.cache
 D:\Univer\Sem_04\MAPZ\FishingGame\obj\Debug\net8.0-windows\FishingGame.genruntimeconfig.cache
 D:\Univer\Sem_04\MAPZ\FishingGame\obj\Debug\net8.0-windows\ref\FishingGame.dll
+D:\Univer\Sem_04\MAPZ\FishingGame\obj\Debug\net8.0-windows\FishingGame.sourcelink.json
+D:\Univer\Sem_04\MAPZ\FishingGame\obj\Debug\net8.0-windows\StartWindow.g.cs
+D:\Univer\Sem_04\MAPZ\FishingGame\obj\Debug\net8.0-windows\StartWindow.baml

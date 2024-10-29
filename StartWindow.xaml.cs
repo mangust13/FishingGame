@@ -12,12 +12,12 @@ using System.Windows.Shapes;
 
 namespace Lab4
 { 
-    public partial class MainWindow : Window
+    public partial class StartWindow : Window
     {
         private string selectedLocation = "";
         public MainFacade gameFacade;
 
-        public MainWindow()
+        public StartWindow()
         {
             InitializeComponent();
             gameFacade = new MainFacade(this);

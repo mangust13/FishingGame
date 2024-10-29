@@ -23,12 +23,12 @@ namespace Lab4
             this.gameFacade = gameFacade;
 
             DataContext = gameFacade;
-            BaitInfoPopup.DataContext = gameFacade.currentFisherman.bait;
-            RodInfoPopup.DataContext = gameFacade.currentFisherman.rod;
-            FishermanInfoPopup.DataContext = gameFacade.currentFisherman;
+            BaitInfoPopup.DataContext = gameFacade.fisherman.bait;
+            RodInfoPopup.DataContext = gameFacade.fisherman.rod;
+            FishermanInfoPopup.DataContext = gameFacade.fisherman;
 
-            gameFacade.currentFisherman.BaitChanged += OnBaitChanged;
-            gameFacade.currentFisherman.RodChanged += OnRodChanged;
+            gameFacade.fisherman.BaitChanged += OnBaitChanged;
+            gameFacade.fisherman.RodChanged += OnRodChanged;
 
             this.KeyDown += SeaWindow_KeyDown;
             DisplayFishCost();
@@ -37,14 +37,14 @@ namespace Lab4
 
         private void OnBaitChanged(object sender, EventArgs e)
         {
-            BaitInfoPopup.DataContext = gameFacade.currentFisherman.bait;
-            BaitIcon.Source = gameFacade.currentFisherman.bait.Image;
+            BaitInfoPopup.DataContext = gameFacade.fisherman.bait;
+            BaitIcon.Source = gameFacade.fisherman.bait.Image;
         }
 
         private void OnRodChanged(object sender, EventArgs e)
         {
-            RodInfoPopup.DataContext = gameFacade.currentFisherman.rod;
-            RodIcon.Source = gameFacade.currentFisherman.rod.Image;
+            RodInfoPopup.DataContext = gameFacade.fisherman.rod;
+            RodIcon.Source = gameFacade.fisherman.rod.Image;
         }
 
         int MoveAnimationIndex = 0;
@@ -130,7 +130,7 @@ namespace Lab4
         {
             CollectBaitCheckCollision();
             OpenShopCheckCollision();
-            if (gameFacade.currentFisherman.bait != null)
+            if (gameFacade.fisherman.bait != null)
                 OnBaitChanged(this, EventArgs.Empty);
         }
 
@@ -186,7 +186,7 @@ namespace Lab4
 
             if (fishermanRect.IntersectsWith(rectangleRect))
             {
-                gameFacade.currentFisherman.bait = gameFacade.Baits[3].Clone();
+                gameFacade.fisherman.bait = gameFacade.Baits[3].Clone();
                 BaitCollect.Source = null;
             }
             else
@@ -213,7 +213,7 @@ namespace Lab4
             var tunaHandler = new TunaHandler();
             var seaDevilHandler = new SeaDevilHandler();
             var sharkHandler = new SharkHandler();
-            List<Fish> fishToShow = gameFacade.fishPrototypes.Where(f => f.Size <= gameFacade.currentFisherman.rod.WeightCapacity).ToList();
+            List<Fish> fishToShow = gameFacade.fishPrototypes.Where(f => f.Size <= gameFacade.fisherman.rod.WeightCapacity).ToList();
 
             crucianHandler.SetNext(perchHandler)
                            .SetNext(salmonHandler)
@@ -260,7 +260,7 @@ namespace Lab4
             
             Random random = new Random();
 
-            if (gameFacade.currentFisherman.bait.Chance > random.NextDouble() * 100)
+            if (gameFacade.fisherman.bait.Chance > random.NextDouble() * 100)
             {
                 caughtFishList.Add(selectedFish);
                 if (selectedFish.Name == "Shark")
@@ -331,7 +331,7 @@ namespace Lab4
                 if (totalCost >= selectedBait.Cost)
                 {
                     totalCost -= selectedBait.Cost;
-                    gameFacade.currentFisherman.bait = selectedBait;
+                    gameFacade.fisherman.bait = selectedBait;
                     OnBaitChanged(this, EventArgs.Empty);
                     ShopPopup.IsOpen = false;
                     shopImage.Visibility = Visibility.Collapsed;
@@ -352,7 +352,7 @@ namespace Lab4
                 if (totalCost >= selectedRod.Cost)
                 {
                     totalCost -= selectedRod.Cost;
-                    gameFacade.currentFisherman.rod = selectedRod;
+                    gameFacade.fisherman.rod = selectedRod;
                     OnRodChanged(this, EventArgs.Empty);
                     ShopPopup.IsOpen = false;
                     shopImage.Visibility = Visibility.Collapsed;

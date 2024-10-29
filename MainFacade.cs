@@ -12,10 +12,9 @@ namespace Lab4
 {
     public class MainFacade
     {
-        public MainWindow mainWindow;
+        public StartWindow startWindow;
         public FishingWindow fishingWindow;
-        FishermanSingleton fishermanSingleton = FishermanSingleton.GetInstance();
-        public Fisherman currentFisherman;
+        public Fisherman fisherman;
         public List<Fish> fishPrototypes = new List<Fish>();
         public List<Bait> Baits = new List<Bait>();
         public List<Rod> Rods = new List<Rod>();
@@ -23,21 +22,21 @@ namespace Lab4
         Rod rod;
         Bait bait;
         public string LocationBackground {  get; set; }
-        public MainFacade(MainWindow mainWindow)
+        public MainFacade(StartWindow startWindow)
         {
-            this.mainWindow = mainWindow;
+            this.startWindow = startWindow;
         }
         public void StartGame(string location, object sender)
         {
             InitializeFishPrototypes();
             InitializeBaits();
             InitializeRods();
+
             bait = Baits[0].Clone();
             rod = Rods[0].Clone();
 
-            fishermanSingleton.ChooseFisherman(bait, rod,
+            fisherman = Fisherman.GetInstance(bait, rod,
                     new BitmapImage(new Uri("Assets/Fishermen/Fisherman.png", UriKind.Relative)));
-            currentFisherman = fishermanSingleton.GetCurrentFisherman();
 
             if (location == "Sea")
                 LocationBackground = "/Assets/Sea.png";
@@ -51,14 +50,14 @@ namespace Lab4
         private void OpenNewWindow()
         {
             fishingWindow = new FishingWindow(this);
-            mainWindow.Close();
+            startWindow.Close();
             fishingWindow.Show();
         }
 
         private void InitilizeFishing(FishingWindow fishingWindow)
         {
             Image fishermanImage = (Image)fishingWindow.FindName("fishermanImage");
-            fishermanImage.Source = currentFisherman.Image;
+            fishermanImage.Source = fisherman.Image;
         }
         
         private void InitializeFishPrototypes()

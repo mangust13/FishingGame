@@ -340,7 +340,7 @@ namespace Lab4 {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/FishingGame;component/fishingwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/FishingGame;V1.0.0.0;component/fishingwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\FishingWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
