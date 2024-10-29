@@ -1,0 +1,95 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\Baits\Bait1.jpg" />
+    <None Remove="Assets\Baits\Bait2.jpg" />
+    <None Remove="Assets\Baits\Bait2.png" />
+    <None Remove="Assets\Baits\Bait2Icon.png" />
+    <None Remove="Assets\Baits\Bait2NoBack.png" />
+    <None Remove="Assets\Baits\Bait3.jpg" />
+    <None Remove="Assets\Baits\Bait4.jpg" />
+    <None Remove="Assets\Baits\Bait4.png" />
+    <None Remove="Assets\Baits\Bait4NoBack.png" />
+    <None Remove="Assets\Baits\Bait5.jpg" />
+    <None Remove="Assets\Fishermen\FishermanAnimation\Animation1.png" />
+    <None Remove="Assets\Fishermen\FishermanAnimation\Animation2.png" />
+    <None Remove="Assets\Fishermen\FishermanAnimation\Animation3.png" />
+    <None Remove="Assets\Fishermen\FishermanAnimation\Animation4.png" />
+    <None Remove="Assets\Fishermen\Fisherman1Move3.png" />
+    <None Remove="Assets\Fishermen\FishermanMove1.png" />
+    <None Remove="Assets\Fishermen\FishermanMove2.png" />
+    <None Remove="Assets\Fishes\Crucian.png" />
+    <None Remove="Assets\Fishes\Flounder.png" />
+    <None Remove="Assets\Fishes\Perch.png" />
+    <None Remove="Assets\Fishes\Salmon.png" />
+    <None Remove="Assets\Fishes\SeaDevil.png" />
+    <None Remove="Assets\Fishes\Shark.png" />
+    <None Remove="Assets\Fishes\Tuna.png" />
+    <None Remove="Assets\Lake.png" />
+    <None Remove="Assets\Objects\FishermanIcon.png" />
+    <None Remove="Assets\Objects\Rod1.jpg" />
+    <None Remove="Assets\Objects\SeaBait.png" />
+    <None Remove="Assets\Objects\SeaRod.png" />
+    <None Remove="Assets\Rods\Rod1.jpg" />
+    <None Remove="Assets\Rods\Rod2.jpg" />
+    <None Remove="Assets\Rods\Rod3.jpg" />
+    <None Remove="Assets\Rods\Rod4.jpg" />
+    <None Remove="Assets\Rods\Rod5.jpg" />
+    <None Remove="Assets\Sea.png" />
+    <None Remove="Assets\SeaBait" />
+    <None Remove="Assets\Start.jpg" />
+    <None Remove="Assets\Start4k.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Baits\Bait2.jpg" />
+    <Resource Include="Assets\Baits\Bait4.png" />
+    <Resource Include="Assets\Baits\Bait4NoBack.png" />
+    <Resource Include="Assets\Rods\Rod2.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Baits\Bait1.jpg" />
+    <Resource Include="Assets\Baits\Bait3.jpg" />
+    <Resource Include="Assets\Baits\Bait5.jpg" />
+    <Resource Include="Assets\Fishermen\FishermanAnimation\Animation1.png" />
+    <Resource Include="Assets\Fishermen\FishermanAnimation\Animation2.png" />
+    <Resource Include="Assets\Fishermen\FishermanAnimation\Animation3.png" />
+    <Resource Include="Assets\Fishermen\FishermanAnimation\Animation4.png" />
+    <Resource Include="Assets\Fishermen\FishermanMove1.png" />
+    <Resource Include="Assets\Fishermen\FishermanMove2.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Fishes\Shark.png" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Resource Include="Assets\Fishermen\Fisherman.png" />
+    <Resource Include="Assets\Fishes\Flounder.png" />
+    <Resource Include="Assets\Fishes\Perch.png" />
+    <Resource Include="Assets\Fishes\Crucian.png" />
+    <Resource Include="Assets\Fishes\Salmon.png" />
+    <Resource Include="Assets\Fishes\SeaDevil.png" />
+    <Resource Include="Assets\Fishes\Tuna.png" />
+    <Resource Include="Assets\Lake.png" />
+    <Resource Include="Assets\Objects\FishermanIcon.png" />
+    <Resource Include="Assets\Objects\SeaRod.png" />
+    <Resource Include="Assets\Rods\Rod1.jpg" />
+    <Resource Include="Assets\Rods\Rod3.jpg" />
+    <Resource Include="Assets\Rods\Rod4.jpg" />
+    <Resource Include="Assets\Rods\Rod5.jpg" />
+    <Resource Include="Assets\Sea.png" />
+    <Resource Include="Assets\Start.jpg" />
+  </ItemGroup>
+
+</Project>

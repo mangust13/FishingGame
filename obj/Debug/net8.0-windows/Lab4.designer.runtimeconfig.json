@@ -1,0 +1,23 @@
+{
+  "runtimeOptions": {
+    "tfm": "net8.0",
+    "frameworks": [
+      {
+        "name": "Microsoft.NETCore.App",
+        "version": "8.0.0"
+      },
+      {
+        "name": "Microsoft.WindowsDesktop.App",
+        "version": "8.0.0"
+      }
+    ],
+    "additionalProbingPaths": [
+      "C:\\Users\\Максим Хруставчук\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Максим Хруставчук\\.nuget\\packages"
+    ],
+    "configProperties": {
+      "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": true,
+      "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true
+    }
+  }
+}
