@@ -1,12 +1,6 @@
 ﻿using FishingGame;
-using System;
-using System.Reflection;
-using System.Threading.Channels;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Xml.Linq;
 
 namespace Lab4
 {
@@ -22,11 +16,8 @@ namespace Lab4
         Rod rod;
         Bait bait;
         public string LocationBackground {  get; set; }
-        public MainFacade(StartWindow startWindow)
-        {
-            this.startWindow = startWindow;
-        }
-        public void StartGame(string location, object sender)
+        public MainFacade(){}
+        public void StartGame(string location)
         {
             InitializeFishPrototypes();
             InitializeBaits();
@@ -38,11 +29,8 @@ namespace Lab4
             fisherman = Fisherman.GetInstance(bait, rod,
                     new BitmapImage(new Uri("Assets/Fishermen/Fisherman.png", UriKind.Relative)));
 
-            if (location == "Sea")
-                LocationBackground = "/Assets/Sea.png";
-            else
-                LocationBackground = "/Assets/Lake.png";
-            
+            LocationBackground = location == "Sea" ? "/Assets/Sea.png" : "/Assets/Lake.png";
+
             OpenNewWindow();
             InitializeShop();
             InitilizeFishing(fishingWindow);
@@ -50,8 +38,18 @@ namespace Lab4
         private void OpenNewWindow()
         {
             fishingWindow = new FishingWindow(this);
-            startWindow.Close();
+            startWindow?.Close();
             fishingWindow.Show();
+        }
+
+        public void SetStartWindow(StartWindow window)
+        {
+            startWindow = window;
+        }
+        public void ShowEndGameWindow()
+        {
+            var endGameWindow = new EndWindow();
+            endGameWindow.Show();
         }
 
         private void InitilizeFishing(FishingWindow fishingWindow)

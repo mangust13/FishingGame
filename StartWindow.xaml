@@ -13,14 +13,18 @@
             <ImageBrush ImageSource ="/Assets/Start.jpg" Stretch="Fill"/>
         </Grid.Background>
 
-        <Button x:Name="StartGameButton" Width="750" Height="110" HorizontalAlignment="Center" VerticalAlignment="Top" 
-        Margin="0,80,0,0" Opacity="0" Click="StartGameButton_Click"/>
+        <Button x:Name="StartGameButton" 
+                Width="750" Height="110" 
+                HorizontalAlignment="Center" VerticalAlignment="Top" 
+                Margin="0,80,0,0" Opacity="0" 
+                Command="{Binding StartGameCommand}"/>
 
         <TextBlock Text="Choose Your Location" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,200,0,0" FontSize="30" FontWeight="Bold"/>
-        <ComboBox x:Name="locationComboBox" SelectionChanged="locationComboBox_SelectionChanged" SelectedIndex="0"
-                  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,250,0,0" Width="150">
-            <ComboBoxItem Content="Sea" />
-            <ComboBoxItem Content="Lake" />
-        </ComboBox>
+        
+        <ComboBox x:Name="locationComboBox"
+          ItemsSource="{Binding Locations}"
+          SelectedItem="{Binding SelectedLocation}"
+          HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,250,0,0" Width="150"/>
+
     </Grid>
 </Window>

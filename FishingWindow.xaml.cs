@@ -1,26 +1,38 @@
-﻿using Lab4;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Controls;
-using System.Text;
 using FishingGame;
 
 namespace Lab4
 {
     public partial class FishingWindow : Window
     {
-        MainFacade gameFacade;
+        MainFacade mainFacade;
+        int MoveAnimationIndex = 0;
+        double step = 15;
         private IState currentState;
+        private ObservableCollection<Fish> caughtFishList = new ObservableCollection<Fish>();
+        List<Uri> moveUris = new List<Uri>
+        {
+            new Uri("Assets/Fishermen/FishermanMove1.png", UriKind.Relative),
+            new Uri("Assets/Fishermen/FishermanMove2.png", UriKind.Relative),
+            new Uri("Assets/Fishermen/Fisherman.png", UriKind.Relative),
+        };
+        List<Uri> hookUris = new List<Uri>
+        {
+            new Uri("Assets/Fishermen/FishermanAnimation/Animation1.png", UriKind.Relative),
+            new Uri("Assets/Fishermen/FishermanAnimation/Animation2.png", UriKind.Relative),
+            new Uri("Assets/Fishermen/FishermanAnimation/Animation3.png", UriKind.Relative),
+            new Uri("Assets/Fishermen/FishermanAnimation/Animation4.png", UriKind.Relative),
+        };
+
         public FishingWindow(MainFacade gameFacade)
         {
             InitializeComponent();
-            this.gameFacade = gameFacade;
+            this.mainFacade = gameFacade;
 
             DataContext = gameFacade;
             BaitInfoPopup.DataContext = gameFacade.fisherman.bait;
@@ -37,25 +49,19 @@ namespace Lab4
 
         private void OnBaitChanged(object sender, EventArgs e)
         {
-            BaitInfoPopup.DataContext = gameFacade.fisherman.bait;
-            BaitIcon.Source = gameFacade.fisherman.bait.Image;
+            BaitInfoPopup.DataContext = mainFacade.fisherman.bait;
+            BaitIcon.Source = mainFacade.fisherman.bait.Image;
         }
 
         private void OnRodChanged(object sender, EventArgs e)
         {
-            RodInfoPopup.DataContext = gameFacade.fisherman.rod;
-            RodIcon.Source = gameFacade.fisherman.rod.Image;
+            RodInfoPopup.DataContext = mainFacade.fisherman.rod;
+            RodIcon.Source = mainFacade.fisherman.rod.Image;
         }
 
-        int MoveAnimationIndex = 0;
-        double step = 15;
+        
 
-        List<Uri> moveUris = new List<Uri>
-        {
-            new Uri("Assets/Fishermen/FishermanMove1.png", UriKind.Relative),
-            new Uri("Assets/Fishermen/FishermanMove2.png", UriKind.Relative),
-            new Uri("Assets/Fishermen/Fisherman.png", UriKind.Relative),
-        };
+        
         private void MooveAnimation()
         {
             ++MoveAnimationIndex;
@@ -64,13 +70,7 @@ namespace Lab4
             fishermanImage.Source = new BitmapImage(moveUris[MoveAnimationIndex]);
         }
 
-        List<Uri> hookUris = new List<Uri>
-        {
-            new Uri("Assets/Fishermen/FishermanAnimation/Animation1.png", UriKind.Relative),
-            new Uri("Assets/Fishermen/FishermanAnimation/Animation2.png", UriKind.Relative),
-            new Uri("Assets/Fishermen/FishermanAnimation/Animation3.png", UriKind.Relative),
-            new Uri("Assets/Fishermen/FishermanAnimation/Animation4.png", UriKind.Relative),
-        };
+        
         public async void HookAnimation()
         {
             foreach (Uri uri in hookUris)
@@ -130,7 +130,7 @@ namespace Lab4
         {
             CollectBaitCheckCollision();
             OpenShopCheckCollision();
-            if (gameFacade.fisherman.bait != null)
+            if (mainFacade.fisherman.bait != null)
                 OnBaitChanged(this, EventArgs.Empty);
         }
 
@@ -186,7 +186,7 @@ namespace Lab4
 
             if (fishermanRect.IntersectsWith(rectangleRect))
             {
-                gameFacade.fisherman.bait = gameFacade.Baits[3].Clone();
+                mainFacade.fisherman.bait = mainFacade.Baits[3].Clone();
                 BaitCollect.Source = null;
             }
             else
@@ -213,7 +213,7 @@ namespace Lab4
             var tunaHandler = new TunaHandler();
             var seaDevilHandler = new SeaDevilHandler();
             var sharkHandler = new SharkHandler();
-            List<Fish> fishToShow = gameFacade.fishPrototypes.Where(f => f.Size <= gameFacade.fisherman.rod.WeightCapacity).ToList();
+            List<Fish> fishToShow = mainFacade.fishPrototypes.Where(f => f.Size <= mainFacade.fisherman.rod.WeightCapacity).ToList();
 
             crucianHandler.SetNext(perchHandler)
                            .SetNext(salmonHandler)
@@ -223,7 +223,7 @@ namespace Lab4
                            .SetNext(sharkHandler);
 
             // Запуск ланцюжка обробників
-            crucianHandler.Handle(gameFacade, menuPopup, fishToShow);         
+            crucianHandler.Handle(mainFacade, menuPopup, fishToShow);         
         }
 
         private void FishermanIcon_MouseDown(object sender, MouseEventArgs e)
@@ -245,8 +245,7 @@ namespace Lab4
             BaitInfoPopup.IsOpen = false;
         }
 
-        private ObservableCollection<Fish> caughtFishList = new ObservableCollection<Fish>();
-        private void FishImage_MouseDown(object sender, MouseButtonEventArgs e)
+        private async void FishImage_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (caughtFishList.Count >= 7)
             {
@@ -255,23 +254,17 @@ namespace Lab4
             }
 
             int fishIndex = menuPanel.Children.IndexOf((UIElement)sender);
-
-            Fish selectedFish = gameFacade.fishPrototypes[fishIndex].Clone();
-            
+            Fish selectedFish = mainFacade.fishPrototypes[fishIndex].Clone();           
             Random random = new Random();
 
-            if (gameFacade.fisherman.bait.Chance > random.NextDouble() * 100)
+            if (mainFacade.fisherman.bait.Chance > random.NextDouble() * 100)
             {
                 caughtFishList.Add(selectedFish);
-                if (selectedFish.Name == "Shark")
-                {
-                    EndWindow endWindow = new EndWindow();
-                    endWindow.Show();
-                    this.Close();
-                }
+
+                await CheckEndGameCondition(selectedFish);
             }
             else
-                caughtFishList.Add(gameFacade.fishPrototypes[0].Clone());
+                caughtFishList.Add(mainFacade.fishPrototypes[0].Clone());
 
             // Додати вибрану рибу до зв'язаного списку
             HookAnimationReverse();
@@ -281,6 +274,17 @@ namespace Lab4
             menuPopup.IsOpen = false;
             UpdateFishermanInfoPopup();
         }
+        private async Task CheckEndGameCondition(Fish selectedFish)
+        {
+            await Task.Delay(50);
+
+            if (selectedFish.Name == "Crucian")
+            {
+                mainFacade.ShowEndGameWindow();
+                this.Close();
+            }
+        }
+
         int totalCost = 0;
         private void DisplayFishCost()
         {
@@ -326,12 +330,12 @@ namespace Lab4
             if (itemName.StartsWith("Bait"))
             {
                 int baitIndex = int.Parse(itemName.Substring(4)) - 1;
-                Bait selectedBait = gameFacade.Baits[baitIndex].Clone();
+                Bait selectedBait = mainFacade.Baits[baitIndex].Clone();
 
                 if (totalCost >= selectedBait.Cost)
                 {
                     totalCost -= selectedBait.Cost;
-                    gameFacade.fisherman.bait = selectedBait;
+                    mainFacade.fisherman.bait = selectedBait;
                     OnBaitChanged(this, EventArgs.Empty);
                     ShopPopup.IsOpen = false;
                     shopImage.Visibility = Visibility.Collapsed;
@@ -347,12 +351,12 @@ namespace Lab4
             else if (itemName.StartsWith("Rod"))
             {
                 int rodIndex = int.Parse(itemName.Substring(3)) - 1;
-                Rod selectedRod = gameFacade.Rods[rodIndex].Clone();
+                Rod selectedRod = mainFacade.Rods[rodIndex].Clone();
 
                 if (totalCost >= selectedRod.Cost)
                 {
                     totalCost -= selectedRod.Cost;
-                    gameFacade.fisherman.rod = selectedRod;
+                    mainFacade.fisherman.rod = selectedRod;
                     OnRodChanged(this, EventArgs.Empty);
                     ShopPopup.IsOpen = false;
                     shopImage.Visibility = Visibility.Collapsed;
