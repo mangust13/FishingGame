@@ -2,7 +2,7 @@
 using System.Windows.Controls.Primitives;
 
 
-namespace Lab4
+namespace FishingGame
 {
     public abstract class FishHandler
     {
@@ -94,9 +94,7 @@ namespace Lab4
 
                 _nextHandler?.Handle(gameFacade, menuPopup, fishToShow);
             }
-
             return;
-
         }
     }
 
@@ -113,7 +111,6 @@ namespace Lab4
 
                 _nextHandler?.Handle(gameFacade, menuPopup, fishToShow);
             }
-
             return;
         }
     }
@@ -131,7 +128,6 @@ namespace Lab4
 
                 _nextHandler?.Handle(gameFacade, menuPopup, fishToShow);
             }
-
             return;
         }
     }

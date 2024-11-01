@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Lab4
+namespace FishingGame
 {
     public partial class App : Application
     {

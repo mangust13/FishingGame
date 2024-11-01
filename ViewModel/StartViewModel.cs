@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
-using Lab4;
+using FishingGame;
 
 namespace FishingGame.ViewModel
 {

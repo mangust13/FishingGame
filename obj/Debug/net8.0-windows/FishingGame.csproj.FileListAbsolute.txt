@@ -69,3 +69,4 @@ D:\Univer\Sem_04\MAPZ\FishingGame\obj\Debug\net8.0-windows\ref\FishingGame.dll
 D:\Univer\Sem_04\MAPZ\FishingGame\obj\Debug\net8.0-windows\FishingGame.sourcelink.json
 D:\Univer\Sem_04\MAPZ\FishingGame\obj\Debug\net8.0-windows\StartWindow.g.cs
 D:\Univer\Sem_04\MAPZ\FishingGame\obj\Debug\net8.0-windows\StartWindow.baml
+D:\Univer\Sem_04\MAPZ\FishingGame\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs

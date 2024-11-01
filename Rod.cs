@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace Lab4
+namespace FishingGame
 {
     public class Rod
     {

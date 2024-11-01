@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
-namespace Lab4
+namespace FishingGame
 {
     public class MainFacade
     {
@@ -15,8 +15,8 @@ namespace Lab4
 
         Rod rod;
         Bait bait;
-        public string LocationBackground {  get; set; }
-        public MainFacade(){}
+        public string LocationBackground { get; set; }
+        public MainFacade() { }
         public void StartGame(string location)
         {
             InitializeFishPrototypes();
@@ -33,7 +33,6 @@ namespace Lab4
 
             OpenNewWindow();
             InitializeShop();
-            InitilizeFishing(fishingWindow);
         }
         private void OpenNewWindow()
         {
@@ -52,28 +51,22 @@ namespace Lab4
             endGameWindow.Show();
         }
 
-        private void InitilizeFishing(FishingWindow fishingWindow)
-        {
-            Image fishermanImage = (Image)fishingWindow.FindName("fishermanImage");
-            fishermanImage.Source = fisherman.Image;
-        }
-        
         private void InitializeFishPrototypes()
         {
-            fishPrototypes.Add(new Fish("Crucian",  5,      5, new BitmapImage(new Uri("Assets/Fishes/Crucian.png", UriKind.Relative))));//карась
-            fishPrototypes.Add(new Fish("Perch",    10,     10, new BitmapImage(new Uri("Assets/Fishes/Perch.png", UriKind.Relative))));//окунь
-            fishPrototypes.Add(new Fish("Salmon",   15,     15, new BitmapImage(new Uri("Assets/Fishes/Salmon.png", UriKind.Relative))));//лосось
-            fishPrototypes.Add(new Fish("Flounder", 15,     15, new BitmapImage(new Uri("Assets/Fishes/Flounder.png", UriKind.Relative))));//камбала
-            fishPrototypes.Add(new Fish("Tuna",     25,     25, new BitmapImage(new Uri("Assets/Fishes/Tuna.png", UriKind.Relative))));//Тунець
-            fishPrototypes.Add(new Fish("Sea Devil",35,     35, new BitmapImage(new Uri("Assets/Fishes/SeaDevil.png", UriKind.Relative))));//чорт
-            fishPrototypes.Add(new Fish("Shark",    45,     100, new BitmapImage(new Uri("Assets/Fishes/Shark.png", UriKind.Relative))));//Акула
+            fishPrototypes.Add(new Fish("Crucian", 5, 5, new BitmapImage(new Uri("Assets/Fishes/Crucian.png", UriKind.Relative))));//карась
+            fishPrototypes.Add(new Fish("Perch", 10, 10, new BitmapImage(new Uri("Assets/Fishes/Perch.png", UriKind.Relative))));//окунь
+            fishPrototypes.Add(new Fish("Salmon", 15, 15, new BitmapImage(new Uri("Assets/Fishes/Salmon.png", UriKind.Relative))));//лосось
+            fishPrototypes.Add(new Fish("Flounder", 15, 15, new BitmapImage(new Uri("Assets/Fishes/Flounder.png", UriKind.Relative))));//камбала
+            fishPrototypes.Add(new Fish("Tuna", 25, 25, new BitmapImage(new Uri("Assets/Fishes/Tuna.png", UriKind.Relative))));//Тунець
+            fishPrototypes.Add(new Fish("Sea Devil", 35, 35, new BitmapImage(new Uri("Assets/Fishes/SeaDevil.png", UriKind.Relative))));//чорт
+            fishPrototypes.Add(new Fish("Shark", 45, 100, new BitmapImage(new Uri("Assets/Fishes/Shark.png", UriKind.Relative))));//Акула
         }
 
         private void InitializeBaits()
         {
             Baits.Add(new Bait("Lvl1", 0, 30, new BitmapImage(new Uri("Assets/Baits/Bait1.jpg", UriKind.Relative))));
-            Baits.Add(new Bait("Lvl2", 100, 40,  new BitmapImage(new Uri("Assets/Baits/Bait2.jpg", UriKind.Relative))));
-            Baits.Add(new Bait("Lvl3", 200, 50,  new BitmapImage(new Uri("Assets/Baits/Bait3.jpg", UriKind.Relative))));
+            Baits.Add(new Bait("Lvl2", 100, 40, new BitmapImage(new Uri("Assets/Baits/Bait2.jpg", UriKind.Relative))));
+            Baits.Add(new Bait("Lvl3", 200, 50, new BitmapImage(new Uri("Assets/Baits/Bait3.jpg", UriKind.Relative))));
             Baits.Add(new Bait("Lvl4", 300, 60, new BitmapImage(new Uri("Assets/Baits/Bait4.png", UriKind.Relative))));
             Baits.Add(new Bait("Lvl5", 400, 70, new BitmapImage(new Uri("Assets/Baits/Bait5.jpg", UriKind.Relative))));
         }
