@@ -12,12 +12,11 @@
     <Window.Resources>
         <local:PositionConverter x:Key="PositionConverter"/>
     </Window.Resources>
-    
+
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="{Binding LocationBackground}" Stretch="Fill"/>
-        </Grid.Background>
-        
+        <Image Source="{Binding BackgroundImage}" Stretch="Fill" IsHitTestVisible="False"/>
+
+
         <Image x:Name="fishermanImage" Width="100" Height="100">
             <Image.Margin>
                 <MultiBinding Converter="{StaticResource PositionConverter}">

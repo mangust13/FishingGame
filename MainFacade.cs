@@ -13,6 +13,7 @@ namespace FishingGame
         public List<Bait> Baits = new List<Bait>();
         public List<Rod> Rods = new List<Rod>();
 
+
         Rod rod;
         Bait bait;
         public string LocationBackground { get; set; }
@@ -25,11 +26,11 @@ namespace FishingGame
 
             bait = Baits[0].Clone();
             rod = Rods[0].Clone();
-
+            LocationBackground = location == "Sea" ? "/Assets/Sea.png" : "/Assets/Lake.png";
             fisherman = Fisherman.GetInstance(bait, rod,
                     new BitmapImage(new Uri("Assets/Fishermen/Fisherman.png", UriKind.Relative)));
 
-            LocationBackground = location == "Sea" ? "/Assets/Sea.png" : "/Assets/Lake.png";
+            
 
             OpenNewWindow();
             InitializeShop();

@@ -11,6 +11,17 @@ namespace FishingGame.ViewModel
 {
     public class FishingViewModel : ViewModelBase
     {
+        private ImageSource _backgroundImage;
+        public ImageSource BackgroundImage
+        {
+            get => _backgroundImage;
+            set
+            {
+                _backgroundImage = value;
+                OnPropertyChanged(nameof(BackgroundImage));
+            }
+        }
+
         private int _animationStep = 15;
         private int _animationIndex = 0;
 
@@ -52,6 +63,11 @@ namespace FishingGame.ViewModel
         public ICommand MoveRightCommand { get; }
         public ICommand MoveUpCommand { get; }
         public ICommand MoveDownCommand { get; }
+        public void UpdateBackground(string newImagePath)
+        {
+            BackgroundImage = new BitmapImage(new Uri(newImagePath, UriKind.RelativeOrAbsolute));
+        }
+
 
         private readonly List<Uri> moveUris = new List<Uri>
         {
@@ -62,6 +78,7 @@ namespace FishingGame.ViewModel
 
         public FishingViewModel()
         {
+            
             FishermanPositionLeft = 0;
             FishermanPositionTop = 10;
 

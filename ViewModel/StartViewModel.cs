@@ -25,7 +25,7 @@ namespace FishingGame.ViewModel
         {
             mainFacade = facade;
             Locations = new ObservableCollection<string> { "Sea", "Lake" };
-            SelectedLocation = Locations[0];
+            SelectedLocation = Locations[1];
             StartGameCommand = new RelayCommand(StartGame);
         }
         private void StartGame(object parameter)

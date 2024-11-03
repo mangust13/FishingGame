@@ -39,7 +39,9 @@ namespace FishingGame
             get { return _rod; }
             set {
                 _rod = value;
-                RodChanged?.Invoke(this, EventArgs.Empty);}
+                RodChanged?.Invoke(this, EventArgs.Empty);
             }
+        }
+ 
     }
 }

@@ -35,11 +35,9 @@ namespace FishingGame
             BaitInfoPopup.DataContext = gameFacade.fisherman.bait;
             RodInfoPopup.DataContext = gameFacade.fisherman.rod;
             FishermanInfoPopup.DataContext = gameFacade.fisherman;
-            
-
+            _viewModel.UpdateBackground(gameFacade.LocationBackground);
             gameFacade.fisherman.BaitChanged += OnBaitChanged;
             gameFacade.fisherman.RodChanged += OnRodChanged;
-
             this.KeyDown += FishingWindow_KeyDown;
             DisplayFishCost();
         }
@@ -55,7 +53,8 @@ namespace FishingGame
             RodInfoPopup.DataContext = _mainFacade.fisherman.rod;
             RodIcon.Source = _mainFacade.fisherman.rod.Image;
         }
-     
+
+
         public async void HookAnimation()
         {
             foreach (Uri uri in hookUris)
