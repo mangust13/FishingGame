@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "D:\\Univer\\Sem_04\\MAPZ\\FishingGame\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{52AB0C60-7B23-45A5-8335-52D0445A0A66}|FishingGame.csproj|d:\\univer\\sem_04\\mapz\\fishinggame\\model\\rod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52AB0C60-7B23-45A5-8335-52D0445A0A66}|FishingGame.csproj|solutionrelative:model\\rod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52AB0C60-7B23-45A5-8335-52D0445A0A66}|FishingGame.csproj|d:\\univer\\sem_04\\mapz\\fishinggame\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52AB0C60-7B23-45A5-8335-52D0445A0A66}|FishingGame.csproj|solutionrelative:app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{52AB0C60-7B23-45A5-8335-52D0445A0A66}|FishingGame.csproj|d:\\univer\\sem_04\\mapz\\fishinggame\\command\\relaycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52AB0C60-7B23-45A5-8335-52D0445A0A66}|FishingGame.csproj|solutionrelative:command\\relaycommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{52AB0C60-7B23-45A5-8335-52D0445A0A66}|FishingGame.csproj|d:\\univer\\sem_04\\mapz\\fishinggame\\fishingwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{52AB0C60-7B23-45A5-8335-52D0445A0A66}|FishingGame.csproj|solutionrelative:fishingwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,12 +27,12 @@
       "RelativeMoniker": "D:0:0:{52AB0C60-7B23-45A5-8335-52D0445A0A66}|FishingGame.csproj|solutionrelative:viewmodel\\fishingviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{52AB0C60-7B23-45A5-8335-52D0445A0A66}|FishingGame.csproj|d:\\univer\\sem_04\\mapz\\fishinggame\\mainfacade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{52AB0C60-7B23-45A5-8335-52D0445A0A66}|FishingGame.csproj|solutionrelative:mainfacade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{52AB0C60-7B23-45A5-8335-52D0445A0A66}|FishingGame.csproj|d:\\univer\\sem_04\\mapz\\fishinggame\\model\\mainfacade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52AB0C60-7B23-45A5-8335-52D0445A0A66}|FishingGame.csproj|solutionrelative:model\\mainfacade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{52AB0C60-7B23-45A5-8335-52D0445A0A66}|FishingGame.csproj|d:\\univer\\sem_04\\mapz\\fishinggame\\fisherman.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{52AB0C60-7B23-45A5-8335-52D0445A0A66}|FishingGame.csproj|solutionrelative:fisherman.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{52AB0C60-7B23-45A5-8335-52D0445A0A66}|FishingGame.csproj|d:\\univer\\sem_04\\mapz\\fishinggame\\model\\fisherman.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{52AB0C60-7B23-45A5-8335-52D0445A0A66}|FishingGame.csproj|solutionrelative:model\\fisherman.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,11 +42,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Rod.cs",
+              "DocumentMoniker": "D:\\Univer\\Sem_04\\MAPZ\\FishingGame\\Model\\Rod.cs",
+              "RelativeDocumentMoniker": "Model\\Rod.cs",
+              "ToolTip": "D:\\Univer\\Sem_04\\MAPZ\\FishingGame\\Model\\Rod.cs",
+              "RelativeToolTip": "Model\\Rod.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T16:48:00.978Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "D:\\Univer\\Sem_04\\MAPZ\\FishingGame\\App.xaml.cs",
+              "RelativeDocumentMoniker": "App.xaml.cs",
+              "ToolTip": "D:\\Univer\\Sem_04\\MAPZ\\FishingGame\\App.xaml.cs",
+              "RelativeToolTip": "App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T16:47:00.605Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RelayCommand.cs",
+              "DocumentMoniker": "D:\\Univer\\Sem_04\\MAPZ\\FishingGame\\Command\\RelayCommand.cs",
+              "RelativeDocumentMoniker": "Command\\RelayCommand.cs",
+              "ToolTip": "D:\\Univer\\Sem_04\\MAPZ\\FishingGame\\Command\\RelayCommand.cs",
+              "RelativeToolTip": "Command\\RelayCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T16:46:31.555Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "PositionConverter.cs",
               "DocumentMoniker": "D:\\Univer\\Sem_04\\MAPZ\\FishingGame\\PositionConverter.cs",
               "RelativeDocumentMoniker": "PositionConverter.cs",
@@ -42,12 +93,11 @@
               "RelativeToolTip": "PositionConverter.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-04T16:18:47.56Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-04T16:18:47.56Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "FishingViewModel.cs",
               "DocumentMoniker": "D:\\Univer\\Sem_04\\MAPZ\\FishingGame\\ViewModel\\FishingViewModel.cs",
               "RelativeDocumentMoniker": "ViewModel\\FishingViewModel.cs",
@@ -60,12 +110,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "MainFacade.cs",
-              "DocumentMoniker": "D:\\Univer\\Sem_04\\MAPZ\\FishingGame\\MainFacade.cs",
-              "RelativeDocumentMoniker": "MainFacade.cs",
-              "ToolTip": "D:\\Univer\\Sem_04\\MAPZ\\FishingGame\\MainFacade.cs",
-              "RelativeToolTip": "MainFacade.cs",
+              "DocumentMoniker": "D:\\Univer\\Sem_04\\MAPZ\\FishingGame\\Model\\MainFacade.cs",
+              "RelativeDocumentMoniker": "Model\\MainFacade.cs",
+              "ToolTip": "D:\\Univer\\Sem_04\\MAPZ\\FishingGame\\Model\\MainFacade.cs",
+              "RelativeToolTip": "Model\\MainFacade.cs",
               "ViewState": "AgIAADIAAAAAAAAAAAAewBwAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-03T21:19:50.541Z",
@@ -73,7 +123,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "FishingWindow.xaml.cs",
               "DocumentMoniker": "D:\\Univer\\Sem_04\\MAPZ\\FishingGame\\FishingWindow.xaml.cs",
               "RelativeDocumentMoniker": "FishingWindow.xaml.cs",
@@ -86,15 +136,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "Fisherman.cs",
-              "DocumentMoniker": "D:\\Univer\\Sem_04\\MAPZ\\FishingGame\\Fisherman.cs",
-              "RelativeDocumentMoniker": "Fisherman.cs",
-              "ToolTip": "D:\\Univer\\Sem_04\\MAPZ\\FishingGame\\Fisherman.cs",
-              "RelativeToolTip": "Fisherman.cs",
+              "DocumentMoniker": "D:\\Univer\\Sem_04\\MAPZ\\FishingGame\\Model\\Fisherman.cs",
+              "RelativeDocumentMoniker": "Model\\Fisherman.cs",
+              "ToolTip": "D:\\Univer\\Sem_04\\MAPZ\\FishingGame\\Model\\Fisherman.cs",
+              "RelativeToolTip": "Model\\Fisherman.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-01T22:49:19.886Z"
+              "WhenOpened": "2024-11-01T22:49:19.886Z",
+              "EditorCaption": ""
             }
           ]
         }

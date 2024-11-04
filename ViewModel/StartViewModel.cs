@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
-using FishingGame;
+using FishingGame.Model;
 
 namespace FishingGame.ViewModel
 {

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace FishingGame
+namespace FishingGame.Model
 {
     public class Bait
     {
@@ -14,12 +14,12 @@ namespace FishingGame
 
         public string Name { get; init; }
         public int Cost { get; init; }
-        public int Chance {get; set;}
-        public ImageSource Image {get; set;}
+        public int Chance { get; set; }
+        public ImageSource Image { get; set; }
 
         public Bait Clone()
         {
-            return new Bait(this.Name, this.Cost, this.Chance, this.Image);
+            return new Bait(Name, Cost, Chance, Image);
         }
     }
 }

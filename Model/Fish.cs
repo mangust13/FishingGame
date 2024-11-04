@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace FishingGame
+namespace FishingGame.Model
 {
     public class Fish
     {
@@ -18,7 +18,7 @@ namespace FishingGame
         }
         public Fish Clone()
         {
-            return new Fish(this.Name, this.Size, this.Cost, this.Image);
+            return new Fish(Name, Size, Cost, Image);
         }
     }
 }

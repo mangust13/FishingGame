@@ -1,8 +1,9 @@
-﻿using FishingGame.ViewModel;
+﻿using FishingGame.Model;
+using FishingGame.ViewModel;
 using System.Windows;
 
 namespace FishingGame
-{ 
+{
     public partial class StartWindow : Window
     {
         public StartWindow()

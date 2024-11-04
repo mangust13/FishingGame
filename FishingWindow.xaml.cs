@@ -4,10 +4,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Controls;
-using FishingGame;
 using FishingGame.ViewModel;
 using System;
 using System.Windows.Controls.Primitives;
+using FishingGame.Model;
 
 namespace FishingGame
 {

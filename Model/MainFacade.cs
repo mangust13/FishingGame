@@ -1,8 +1,7 @@
-﻿using FishingGame;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
-namespace FishingGame
+namespace FishingGame.Model
 {
     public class MainFacade
     {

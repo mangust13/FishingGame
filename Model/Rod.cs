@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace FishingGame
+namespace FishingGame.Model
 {
     public class Rod
     {
@@ -13,13 +13,13 @@ namespace FishingGame
         }
 
         public string Name { get; init; }
-        public int Cost {  get; init; }
+        public int Cost { get; init; }
         public int WeightCapacity { get; set; }
         public ImageSource Image { get; set; }
 
         public Rod Clone()
         {
-            return new Rod(this.Name, this.Cost, this.WeightCapacity, this.Image);
+            return new Rod(Name, Cost, WeightCapacity, Image);
         }
     }
 }

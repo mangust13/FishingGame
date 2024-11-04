@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace FishingGame
+namespace FishingGame.Model
 {
     public class Fisherman
     {
@@ -14,9 +14,9 @@ namespace FishingGame
 
         private Fisherman(Bait bait, Rod rod, ImageSource image)
         {
-            this._bait = bait;
-            this._rod = rod;
-            this.Image = image;
+            _bait = bait;
+            _rod = rod;
+            Image = image;
         }
 
         public static Fisherman GetInstance(Bait bait, Rod rod, ImageSource image)
@@ -28,20 +28,24 @@ namespace FishingGame
             return _instance;
         }
 
-        public Bait bait {
-            get { return _bait; } 
-            set { 
+        public Bait bait
+        {
+            get { return _bait; }
+            set
+            {
                 _bait = value;
                 BaitChanged?.Invoke(this, EventArgs.Empty);
-            } 
+            }
         }
-        public Rod rod {
+        public Rod rod
+        {
             get { return _rod; }
-            set {
+            set
+            {
                 _rod = value;
                 RodChanged?.Invoke(this, EventArgs.Empty);
             }
         }
- 
+
     }
 }
