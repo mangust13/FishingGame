@@ -52,14 +52,14 @@ namespace FishingGame.ViewModel
             }
         }
 
-        private ImageSource _currentImage;
-        public ImageSource CurrentImage
+        private ImageSource _fishermanImage;
+        public ImageSource FishermanImage
         {
-            get => _currentImage;
+            get => _fishermanImage;
             set
             {
-                _currentImage = value;
-                OnPropertyChanged(nameof(CurrentImage));
+                _fishermanImage = value;
+                OnPropertyChanged(nameof(FishermanImage));
             }
         }
         private bool _isFishing = false;
@@ -113,17 +113,26 @@ namespace FishingGame.ViewModel
         
         List<Uri> _hookUris = new List<Uri>
         {
-            new Uri("Assets/Fishermen/FishermanAnimation/Animation1.png", UriKind.Relative),
-            new Uri("Assets/Fishermen/FishermanAnimation/Animation2.png", UriKind.Relative),
-            new Uri("Assets/Fishermen/FishermanAnimation/Animation3.png", UriKind.Relative),
-            new Uri("Assets/Fishermen/FishermanAnimation/Animation4.png", UriKind.Relative),
+            new Uri("../Assets/Fishermen/FishermanAnimation/Animation1.png", UriKind.RelativeOrAbsolute),
+            new Uri("../Assets/Fishermen/FishermanAnimation/Animation2.png", UriKind.RelativeOrAbsolute),
+            new Uri("../Assets/Fishermen/FishermanAnimation/Animation3.png", UriKind.RelativeOrAbsolute),
+            new Uri("../Assets/Fishermen/FishermanAnimation/Animation4.png", UriKind.RelativeOrAbsolute),
         };
         private readonly List<Uri> moveUris = new List<Uri>
         {
-            new Uri("Assets/Fishermen/FishermanMove1.png", UriKind.RelativeOrAbsolute),
-            new Uri("Assets/Fishermen/FishermanMove2.png", UriKind.RelativeOrAbsolute),
-            new Uri("Assets/Fishermen/Fisherman.png", UriKind.RelativeOrAbsolute)
+            new Uri("../Assets/Fishermen/FishermanMove2.png", UriKind.RelativeOrAbsolute),
+            new Uri("../Assets/Fishermen/FishermanMove1.png", UriKind.RelativeOrAbsolute),
+            new Uri("../Assets/Fishermen/Fisherman.png", UriKind.RelativeOrAbsolute)
         };
+
+        public void UpdateFisherman(int index)
+        {
+            fisherman.Image = new BitmapImage(moveUris[index]);
+
+            FishermanImage = fisherman.Image;
+            OnPropertyChanged(nameof(FishermanImage));
+        }
+        Fisherman fisherman;
         public void UpdateBackground(string newImagePath)
         {
             BackgroundImage = new BitmapImage(new Uri(newImagePath, UriKind.RelativeOrAbsolute));
@@ -133,6 +142,8 @@ namespace FishingGame.ViewModel
             _mainFacade = gameFacade;
             FishermanPositionLeft = 10;
             FishermanPositionTop = 10;
+            fisherman = Fisherman.GetInstance(null, null, null);
+            FishermanImage = fisherman.Image;
 
             MoveLeftCommand = new RelayCommand(_ => MoveLeft());
             MoveRightCommand = new RelayCommand(_ => MoveRight());
@@ -153,6 +164,7 @@ namespace FishingGame.ViewModel
             {
                 IsFishing = false;
                 await HookAnimationReverse();
+                FishMenu.IsOpen = false;
             }
         }
 
@@ -165,7 +177,7 @@ namespace FishingGame.ViewModel
             _isAnimating = true;
             for (int i = 0 ; i <= _hookUris.Count - 1; ++i)
             {
-                CurrentImage = new BitmapImage(_hookUris[i]);
+                FishermanImage = new BitmapImage(_hookUris[i]);
                 await Task.Delay(100);
             }
             _isAnimating = false;
@@ -176,23 +188,20 @@ namespace FishingGame.ViewModel
             _isAnimating = true;
             for (int i = _hookUris.Count - 1; i >= 0; i--)
             {
-                CurrentImage = new BitmapImage(_hookUris[i]);
+                FishermanImage = new BitmapImage(_hookUris[i]);
                 await Task.Delay(100);
             }
             _isAnimating = false;
         }
-
 
         private void UpdateAnimation()
         {
             Thread.Sleep(15);
 
             ++_animationIndex;
-                if (_animationIndex >= moveUris.Count)
+            if (_animationIndex >= moveUris.Count)
                 _animationIndex = 0;
-            CurrentImage= new BitmapImage(moveUris[_animationIndex]);
-
-            OnPropertyChanged(nameof(CurrentImage));
+            UpdateFisherman(_animationIndex);
         }
         private void MoveLeft()
         {

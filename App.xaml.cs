@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using FishingGame.Model;
+using FishingGame.View;
 
 namespace FishingGame
 {

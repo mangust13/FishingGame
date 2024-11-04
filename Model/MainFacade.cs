@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using FishingGame.View;
 
 namespace FishingGame.Model
 {
@@ -27,7 +28,7 @@ namespace FishingGame.Model
             rod = Rods[0].Clone();
             LocationBackground = location == "Sea" ? "/Assets/Sea.png" : "/Assets/Lake.png";
             fisherman = Fisherman.GetInstance(bait, rod,
-                    new BitmapImage(new Uri("Assets/Fishermen/Fisherman.png", UriKind.Relative)));
+                    new BitmapImage(new Uri("/Assets/Fishermen/Fisherman.png", UriKind.Relative)));
 
             OpenNewWindow();
             InitializeShop();
@@ -51,31 +52,31 @@ namespace FishingGame.Model
 
         private void InitializeFishPrototypes()
         {
-            fishPrototypes.Add(new Fish("Crucian", 5, 5, new BitmapImage(new Uri("Assets/Fishes/Crucian.png", UriKind.Relative))));//карась
-            fishPrototypes.Add(new Fish("Perch", 10, 10, new BitmapImage(new Uri("Assets/Fishes/Perch.png", UriKind.Relative))));//окунь
-            fishPrototypes.Add(new Fish("Salmon", 15, 15, new BitmapImage(new Uri("Assets/Fishes/Salmon.png", UriKind.Relative))));//лосось
-            fishPrototypes.Add(new Fish("Flounder", 15, 15, new BitmapImage(new Uri("Assets/Fishes/Flounder.png", UriKind.Relative))));//камбала
-            fishPrototypes.Add(new Fish("Tuna", 25, 25, new BitmapImage(new Uri("Assets/Fishes/Tuna.png", UriKind.Relative))));//Тунець
-            fishPrototypes.Add(new Fish("Sea Devil", 35, 35, new BitmapImage(new Uri("Assets/Fishes/SeaDevil.png", UriKind.Relative))));//чорт
-            fishPrototypes.Add(new Fish("Shark", 45, 100, new BitmapImage(new Uri("Assets/Fishes/Shark.png", UriKind.Relative))));//Акула
+            fishPrototypes.Add(new Fish("Crucian", 5, 5, new BitmapImage(new Uri("../Assets/Fishes/Crucian.png", UriKind.Relative))));//карась
+            fishPrototypes.Add(new Fish("Perch", 10, 10, new BitmapImage(new Uri("../Assets/Fishes/Perch.png", UriKind.Relative))));//окунь
+            fishPrototypes.Add(new Fish("Salmon", 15, 15, new BitmapImage(new Uri("../Assets/Fishes/Salmon.png", UriKind.Relative))));//лосось
+            fishPrototypes.Add(new Fish("Flounder", 15, 15, new BitmapImage(new Uri("../Assets/Fishes/Flounder.png", UriKind.Relative))));//камбала
+            fishPrototypes.Add(new Fish("Tuna", 25, 25, new BitmapImage(new Uri("../Assets/Fishes/Tuna.png", UriKind.Relative))));//Тунець
+            fishPrototypes.Add(new Fish("Sea Devil", 35, 35, new BitmapImage(new Uri("../Assets/Fishes/SeaDevil.png", UriKind.Relative))));//чорт
+            fishPrototypes.Add(new Fish("Shark", 45, 100, new BitmapImage(new Uri("../Assets/Fishes/Shark.png", UriKind.Relative))));//Акула
         }
 
         private void InitializeBaits()
         {
-            Baits.Add(new Bait("Lvl1", 0, 30, new BitmapImage(new Uri("Assets/Baits/Bait1.jpg", UriKind.Relative))));
-            Baits.Add(new Bait("Lvl2", 100, 40, new BitmapImage(new Uri("Assets/Baits/Bait2.jpg", UriKind.Relative))));
-            Baits.Add(new Bait("Lvl3", 200, 50, new BitmapImage(new Uri("Assets/Baits/Bait3.jpg", UriKind.Relative))));
-            Baits.Add(new Bait("Lvl4", 300, 60, new BitmapImage(new Uri("Assets/Baits/Bait4.png", UriKind.Relative))));
-            Baits.Add(new Bait("Lvl5", 400, 70, new BitmapImage(new Uri("Assets/Baits/Bait5.jpg", UriKind.Relative))));
+            Baits.Add(new Bait("Lvl1", 0, 30, new BitmapImage(new Uri("../Assets/Baits/Bait1.jpg", UriKind.Relative))));
+            Baits.Add(new Bait("Lvl2", 100, 40, new BitmapImage(new Uri("../Assets/Baits/Bait2.jpg", UriKind.Relative))));
+            Baits.Add(new Bait("Lvl3", 200, 50, new BitmapImage(new Uri("../Assets/Baits/Bait3.jpg", UriKind.Relative))));
+            Baits.Add(new Bait("Lvl4", 300, 60, new BitmapImage(new Uri("../Assets/Baits/Bait4.png", UriKind.Relative))));
+            Baits.Add(new Bait("Lvl5", 400, 70, new BitmapImage(new Uri("../Assets/Baits/Bait5.jpg", UriKind.Relative))));
         }
 
         private void InitializeRods()
         {
-            Rods.Add(new Rod("Lvl1", 0, 10, new BitmapImage(new Uri("Assets/Rods/Rod1.jpg", UriKind.Relative))));
-            Rods.Add(new Rod("Lvl2", 100, 20, new BitmapImage(new Uri("Assets/Rods/Rod2.jpg", UriKind.Relative))));
-            Rods.Add(new Rod("Lvl3", 200, 30, new BitmapImage(new Uri("Assets/Rods/Rod3.jpg", UriKind.Relative))));
-            Rods.Add(new Rod("Lvl4", 300, 40, new BitmapImage(new Uri("Assets/Rods/Rod4.jpg", UriKind.Relative))));
-            Rods.Add(new Rod("Lvl5", 400, 50, new BitmapImage(new Uri("Assets/Rods/Rod5.jpg", UriKind.Relative))));
+            Rods.Add(new Rod("Lvl1", 0, 10, new BitmapImage(new Uri("../Assets/Rods/Rod1.jpg", UriKind.Relative))));
+            Rods.Add(new Rod("Lvl2", 100, 20, new BitmapImage(new Uri("../Assets/Rods/Rod2.jpg", UriKind.Relative))));
+            Rods.Add(new Rod("Lvl3", 200, 30, new BitmapImage(new Uri("../Assets/Rods/Rod3.jpg", UriKind.Relative))));
+            Rods.Add(new Rod("Lvl4", 300, 40, new BitmapImage(new Uri("../Assets/Rods/Rod4.jpg", UriKind.Relative))));
+            Rods.Add(new Rod("Lvl5", 400, 50, new BitmapImage(new Uri("../Assets/Rods/Rod5.jpg", UriKind.Relative))));
         }
 
         private void InitializeShop()

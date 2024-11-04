@@ -7,21 +7,21 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="FishingWindow.xaml.cs">
+    <Compile Update="View\FishingWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="EndWindow.xaml.cs">
+    <Compile Update="View\EndWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="StartWindow.xaml">
+    <Page Update="View\StartWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="FishingWindow.xaml">
+    <Page Update="View\FishingWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="EndWindow.xaml">
+    <Page Update="View\EndWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
