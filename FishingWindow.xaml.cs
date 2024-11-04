@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using FishingGame;
 using FishingGame.ViewModel;
 using System;
+using System.Windows.Controls.Primitives;
 
 namespace FishingGame
 {
@@ -22,18 +23,23 @@ namespace FishingGame
         public FishingWindow(MainFacade gameFacade)
         {
             InitializeComponent();
-            _viewModel = new FishingViewModel();
-            _mainFacade = gameFacade;
+            _viewModel = new FishingViewModel(gameFacade);
             DataContext = _viewModel;
+            _viewModel.UpdateBackground(gameFacade.LocationBackground);
+            _viewModel.FishMenu = menuPopup;
 
+            _mainFacade = gameFacade;
             BaitInfoPopup.DataContext = gameFacade.fisherman.bait;
             RodInfoPopup.DataContext = gameFacade.fisherman.rod;
             FishermanInfoPopup.DataContext = gameFacade.fisherman;
-            _viewModel.UpdateBackground(gameFacade.LocationBackground);
+
             gameFacade.fisherman.BaitChanged += OnBaitChanged;
             gameFacade.fisherman.RodChanged += OnRodChanged;
+
             this.KeyDown += FishingWindow_KeyDown;
             DisplayFishCost();
+
+             
         }
 
         private void OnBaitChanged(object sender, EventArgs e)
@@ -67,10 +73,7 @@ namespace FishingGame
                 case Key.F:
                     _viewModel.FishermanRect = new Rect(fishermanImage.Margin.Left, fishermanImage.Margin.Top, fishermanImage.ActualWidth, fishermanImage.ActualHeight);
                     _viewModel.StartFishingRect = new Rect(StartFishingRect.Margin.Left, StartFishingRect.Margin.Top, StartFishingRect.ActualWidth, StartFishingRect.ActualHeight);
-                    if (!_viewModel.IsFishing)
-                        _viewModel.StartFishingCommand.Execute(null);
-                    else if (_viewModel.IsFishing)
-                        _viewModel.StopFishingCommand.Execute(null);
+                    _viewModel.FishingCommand.Execute(null);
                     break;
                 case Key.E:
                     OpenShop();
@@ -79,19 +82,6 @@ namespace FishingGame
                     break;
             }
         }
-        //public void StartFishing()
-        //{
-        //    isFishing = true;
-        //    HookAnimation();
-        //    menuPopup.IsOpen = true;
-        //    DisplayFishByWeightCapacity();
-        //}
-        //public void StopFishing()
-        //{
-        //    isFishing = false;
-        //    HookAnimationReverse();
-        //    menuPopup.IsOpen = false;
-        //}
         public void OpenShop()
         {
             CollectBaitCheckCollision();
@@ -123,27 +113,7 @@ namespace FishingGame
             }
         }
 
-        public void DisplayFishByWeightCapacity()
-        {
-            var crucianHandler = new CrucianHandler();
-            var perchHandler = new PerchHandler();
-            var salmonHandler = new SalmonHandler();
-            var flounderHandler = new FlounderHandler();
-            var tunaHandler = new TunaHandler();
-            var seaDevilHandler = new SeaDevilHandler();
-            var sharkHandler = new SharkHandler();
-            List<Fish> fishToShow = _mainFacade.fishPrototypes.Where(f => f.Size <= _mainFacade.fisherman.rod.WeightCapacity).ToList();
-
-            crucianHandler.SetNext(perchHandler)
-                           .SetNext(salmonHandler)
-                           .SetNext(flounderHandler)
-                           .SetNext(tunaHandler)
-                           .SetNext(seaDevilHandler)
-                           .SetNext(sharkHandler);
-
-            // Запуск ланцюжка обробників
-            crucianHandler.Handle(_mainFacade, menuPopup, fishToShow);
-        }
+        
 
         private void FishermanIcon_MouseDown(object sender, MouseEventArgs e)
         {

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -12,6 +14,7 @@ namespace FishingGame.ViewModel
 {
     public class FishingViewModel : ViewModelBase
     {
+        private MainFacade _mainFacade;
         private ImageSource _backgroundImage;
         public ImageSource BackgroundImage
         {
@@ -68,6 +71,7 @@ namespace FishingGame.ViewModel
                 OnPropertyChanged(nameof(IsFishing));
             }
         }
+        private bool _isAnimating;
         private Rect _fishermanRect;
         public Rect FishermanRect
         {
@@ -88,12 +92,24 @@ namespace FishingGame.ViewModel
                 OnPropertyChanged(nameof(StartFishingRect));
             }
         }
+
+        private Popup _fishMenu;
+        public Popup FishMenu
+        {
+            get => _fishMenu;
+            set
+            {
+                _fishMenu = value;
+                OnPropertyChanged(nameof(FishMenu));
+            }
+        }
+
         public ICommand MoveLeftCommand { get; }
         public ICommand MoveRightCommand { get; }
         public ICommand MoveUpCommand { get; }
         public ICommand MoveDownCommand { get; }
-        public ICommand StartFishingCommand { get; }
-        public ICommand StopFishingCommand { get; }
+        public ICommand FishingCommand { get; }
+        
         List<Uri> _hookUris = new List<Uri>
         {
             new Uri("Assets/Fishermen/FishermanAnimation/Animation1.png", UriKind.Relative),
@@ -101,7 +117,6 @@ namespace FishingGame.ViewModel
             new Uri("Assets/Fishermen/FishermanAnimation/Animation3.png", UriKind.Relative),
             new Uri("Assets/Fishermen/FishermanAnimation/Animation4.png", UriKind.Relative),
         };
-
         private readonly List<Uri> moveUris = new List<Uri>
         {
             new Uri("Assets/Fishermen/FishermanMove1.png", UriKind.RelativeOrAbsolute),
@@ -112,8 +127,9 @@ namespace FishingGame.ViewModel
         {
             BackgroundImage = new BitmapImage(new Uri(newImagePath, UriKind.RelativeOrAbsolute));
         }
-        public FishingViewModel()
+        public FishingViewModel(MainFacade gameFacade)
         {
+            _mainFacade = gameFacade;
             FishermanPositionLeft = 10;
             FishermanPositionTop = 10;
 
@@ -121,46 +137,48 @@ namespace FishingGame.ViewModel
             MoveRightCommand = new RelayCommand(_ => MoveRight());
             MoveUpCommand = new RelayCommand(_ => MoveUp());
             MoveDownCommand = new RelayCommand(_ => MoveDown());
-            StartFishingCommand = new RelayCommand(_ => StartFishing());
-            StopFishingCommand = new RelayCommand(_ => StopFishing());
+            FishingCommand = new RelayCommand(_ => Fishing());
         }
-        public async void StartFishing()
+        public async void Fishing()
         {
-            if (StartFishingCheckCollision() && !IsFishing)
+            if (!IsFishing && StartFishingCheckCollision() && !_isAnimating)
             {
                 IsFishing = true;
                 await HookAnimation();
+                FishMenu.IsOpen = true;
+                DisplayFishByWeightCapacity();
             }
-        }
-
-        public async void StopFishing()
-        {
-            if (IsFishing)
+            else if (IsFishing && StartFishingCheckCollision() && !_isAnimating)
             {
                 IsFishing = false;
                 await HookAnimationReverse();
             }
         }
+
         public bool StartFishingCheckCollision()
         {
             return FishermanRect.IntersectsWith(StartFishingRect);
         }
         private async Task HookAnimation()
         {
+            _isAnimating = true;
             for (int i = 0 ; i <= _hookUris.Count - 1; ++i)
             {
                 CurrentImage = new BitmapImage(_hookUris[i]);
                 await Task.Delay(100);
             }
+            _isAnimating = false;
         }
 
         private async Task HookAnimationReverse()
         {
+            _isAnimating = true;
             for (int i = _hookUris.Count - 1; i >= 0; i--)
             {
                 CurrentImage = new BitmapImage(_hookUris[i]);
                 await Task.Delay(100);
             }
+            _isAnimating = false;
         }
 
 
@@ -195,5 +213,62 @@ namespace FishingGame.ViewModel
             FishermanPositionTop += _animationStep;
             UpdateAnimation();
         }
+
+        public void DisplayFishByWeightCapacity()
+        {
+
+            List<Fish> fishToShow = _mainFacade.fishPrototypes
+                .Where(f => f.Size <= _mainFacade.fisherman.rod.WeightCapacity)
+                .ToList();
+
+            if (fishToShow.Count >= 2)
+            {
+                FishMenu.Width = 100;
+                Fish crucian = fishToShow[0].Clone();
+                Image crucianImage = (Image)FishMenu.FindName("CrucianImage");
+                crucianImage.Source = crucian.Image;
+
+                Fish perch = fishToShow[1].Clone();
+                Image perchImage = (Image)FishMenu.FindName("PerchImage");
+                perchImage.Source = perch.Image;
+            }
+            if (fishToShow.Count >= 4)
+            {
+                FishMenu.Width = 200;
+
+                Fish salmon = fishToShow[2].Clone();
+                Image salmonImage = (Image)FishMenu.FindName("SalmonImage");
+                salmonImage.Source = salmon.Image;
+
+                Fish flounder = fishToShow[3].Clone();
+                Image flounderImage = (Image)FishMenu.FindName("FlounderImage");
+                flounderImage.Source = flounder.Image;
+            }
+            if (fishToShow.Count >= 5)
+            {
+                FishMenu.Width = 250;
+
+                Fish tuna = fishToShow[4].Clone();
+                Image tunaImage = (Image)FishMenu.FindName("TunaImage");
+                tunaImage.Source = tuna.Image;
+            }
+            if (fishToShow.Count >= 6)
+            {
+                FishMenu.Width = 300;
+
+                Fish seaDevil = fishToShow[5].Clone();
+                Image seaDevilImage = (Image)FishMenu.FindName("SeaDevilImage");
+                seaDevilImage.Source = seaDevil.Image;
+            }
+            if (fishToShow.Count >= 7)
+            {
+                FishMenu.Width = 350;
+
+                Fish shark = fishToShow[6].Clone();
+                Image sharkImage = (Image)FishMenu.FindName("SharkImage");
+                sharkImage.Source = shark.Image;
+            }
+        }
+
     }
 }
