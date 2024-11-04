@@ -7,30 +7,35 @@ namespace FishingGame.ViewModel
     public class StartViewModel : ViewModelBase
     {
         private readonly MainFacade mainFacade;
-        public ObservableCollection<string> Locations  { get; set; }
         public ICommand StartGameCommand   { get; set; }
 
-        private string selectedLocation;
-        private string SelectedLocation 
+        private string _selectedLocation;
+        public string SelectedLocation
         {
-            get { return selectedLocation; }
+            get => _selectedLocation;
             set
             {
-                selectedLocation = value;
+                _selectedLocation = value;
                 OnPropertyChanged(nameof(SelectedLocation));
             }
         }
 
+        public ObservableCollection<string> Locations { get; set; }
+
+
         public StartViewModel(MainFacade facade)
         {
+            SelectedLocation = "Sea";
             mainFacade = facade;
-            Locations = new ObservableCollection<string> { "Sea", "Lake" };
-            SelectedLocation = Locations[1];
+            Locations = new ObservableCollection<string>
+            {
+                "Lake", "Sea"
+            };
             StartGameCommand = new RelayCommand(StartGame);
         }
         private void StartGame(object parameter)
         {
-            mainFacade.StartGame(SelectedLocation);
+            mainFacade.StartGame(_selectedLocation);
         }
     }
 }

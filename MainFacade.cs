@@ -30,8 +30,6 @@ namespace FishingGame
             fisherman = Fisherman.GetInstance(bait, rod,
                     new BitmapImage(new Uri("Assets/Fishermen/Fisherman.png", UriKind.Relative)));
 
-            
-
             OpenNewWindow();
             InitializeShop();
         }

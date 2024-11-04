@@ -17,13 +17,7 @@ namespace FishingGame
         private bool isFishing = false;
         private ObservableCollection<Fish> caughtFishList = new ObservableCollection<Fish>();
 
-        List<Uri> hookUris = new List<Uri>
-        {
-            new Uri("Assets/Fishermen/FishermanAnimation/Animation1.png", UriKind.Relative),
-            new Uri("Assets/Fishermen/FishermanAnimation/Animation2.png", UriKind.Relative),
-            new Uri("Assets/Fishermen/FishermanAnimation/Animation3.png", UriKind.Relative),
-            new Uri("Assets/Fishermen/FishermanAnimation/Animation4.png", UriKind.Relative),
-        };
+        
 
         public FishingWindow(MainFacade gameFacade)
         {
@@ -54,24 +48,6 @@ namespace FishingGame
             RodIcon.Source = _mainFacade.fisherman.rod.Image;
         }
 
-
-        public async void HookAnimation()
-        {
-            foreach (Uri uri in hookUris)
-            {
-                fishermanImage.Source = new BitmapImage(uri);
-                await Task.Delay(100);
-            }
-        }
-        public async void HookAnimationReverse()
-        {
-            for (int i = hookUris.Count - 1; i >= 0; i--)
-            {
-                fishermanImage.Source = new BitmapImage(hookUris[i]);
-                await Task.Delay(100);
-            }
-        }
-
         private async void FishingWindow_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.Key)
@@ -89,29 +65,33 @@ namespace FishingGame
                     _viewModel.MoveDownCommand.Execute(null);
                     break;
                 case Key.F:
-                    if (!isFishing && StartFishingCheckCollision())
-                        StartFishing();
-                    else if (StartFishingCheckCollision())
-                        StopFishing();
+                    _viewModel.FishermanRect = new Rect(fishermanImage.Margin.Left, fishermanImage.Margin.Top, fishermanImage.ActualWidth, fishermanImage.ActualHeight);
+                    _viewModel.StartFishingRect = new Rect(StartFishingRect.Margin.Left, StartFishingRect.Margin.Top, StartFishingRect.ActualWidth, StartFishingRect.ActualHeight);
+                    if (!_viewModel.IsFishing)
+                        _viewModel.StartFishingCommand.Execute(null);
+                    else if (_viewModel.IsFishing)
+                        _viewModel.StopFishingCommand.Execute(null);
                     break;
                 case Key.E:
                     OpenShop();
                     break;
+                default:
+                    break;
             }
         }
-        public void StartFishing()
-        {
-            isFishing = true;
-            HookAnimation();
-            menuPopup.IsOpen = true;
-            DisplayFishByWeightCapacity();
-        }
-        public void StopFishing()
-        {
-            isFishing = false;
-            HookAnimationReverse();
-            menuPopup.IsOpen = false;
-        }
+        //public void StartFishing()
+        //{
+        //    isFishing = true;
+        //    HookAnimation();
+        //    menuPopup.IsOpen = true;
+        //    DisplayFishByWeightCapacity();
+        //}
+        //public void StopFishing()
+        //{
+        //    isFishing = false;
+        //    HookAnimationReverse();
+        //    menuPopup.IsOpen = false;
+        //}
         public void OpenShop()
         {
             CollectBaitCheckCollision();
@@ -120,13 +100,6 @@ namespace FishingGame
                 OnBaitChanged(this, EventArgs.Empty);
         }
 
-        public bool StartFishingCheckCollision()
-        {
-            Rect fishermanRect = new Rect(fishermanImage.Margin.Left, fishermanImage.Margin.Top, fishermanImage.ActualWidth, fishermanImage.ActualHeight);
-            Rect rectangleRect = new Rect(StartFishingRect.Margin.Left, StartFishingRect.Margin.Top, StartFishingRect.ActualWidth, StartFishingRect.ActualHeight);
-
-            return fishermanRect.IntersectsWith(rectangleRect);
-        }
         public void CollectBaitCheckCollision()
         {
             Rect fishermanRect = new Rect(fishermanImage.Margin.Left, fishermanImage.Margin.Top, fishermanImage.ActualWidth, fishermanImage.ActualHeight);
@@ -213,7 +186,7 @@ namespace FishingGame
                 caughtFishList.Add(_mainFacade.fishPrototypes[0].Clone());
 
             // Додати вибрану рибу до зв'язаного списку
-            HookAnimationReverse();
+            //HookAnimationReverse();
             DisplayFishCost();
             isFishing = false;
             menuPopup.IsOpen = false;

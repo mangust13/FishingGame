@@ -14,8 +14,7 @@
     </Window.Resources>
 
     <Grid>
-        <Image Source="{Binding BackgroundImage}" Stretch="Fill" IsHitTestVisible="False"/>
-
+        <Image Source="{Binding BackgroundImage}" Stretch="Fill"/>
 
         <Image x:Name="fishermanImage" Width="100" Height="100">
             <Image.Margin>

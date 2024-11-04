@@ -22,6 +22,7 @@
         <TextBlock Text="Choose Your Location" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,200,0,0" FontSize="30" FontWeight="Bold"/>
         
         <ComboBox x:Name="locationComboBox"
+          
           ItemsSource="{Binding Locations}"
           SelectedItem="{Binding SelectedLocation}"
           HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,250,0,0" Width="150"/>
