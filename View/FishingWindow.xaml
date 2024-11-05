@@ -79,10 +79,11 @@
             </Border>
         </Popup>
 
-        <Rectangle x:Name="StartFishingRect" Width="35" Height="140" Margin="400, 55, 0,0" Stroke="Black" StrokeThickness="3"/>
-
         <!--Fishing menu-->
-        <Popup x:Name="fishMenu" PlacementTarget="{Binding ElementName=fishermanImage}"  IsOpen="False">
+        <Rectangle x:Name="StartFishingRect" Width="35" Height="140"
+           Margin="400, 55, 0,0" Stroke="Black" StrokeThickness="3"/>
+        
+        <Popup x:Name="fishMenu" PlacementTarget="{Binding ElementName=fishermanImage}" IsOpen="False">
             <Border BorderThickness="1" BorderBrush="Black" Background="LightGray">
                 <StackPanel x:Name="menuPanel" Orientation="Horizontal" >
                     <Image x:Name="CrucianImage" Width="40" Margin="5" MouseDown="FishImage_MouseDown"/>
@@ -97,9 +98,10 @@
         </Popup>
         
         <!--Shop-->
-        <Rectangle x:Name="ShopRect" Width="80" Height="80"
-            Margin="-180,-65,100,100"/>
-        <Popup x:Name="ShopPopup" PlacementTarget="{Binding ElementName=fishermanImage}"  IsOpen="False">
+        <Rectangle x:Name="ShopRect" Width="100" Height="100"
+            Margin="-180,-65,100,100" Stroke="Black" StrokeThickness="3"/>
+        
+        <Popup x:Name="shopMenu" PlacementTarget="{Binding ElementName=fishermanImage}" IsOpen="False">
             <Border BorderThickness="1" BorderBrush="Black" Background="LightGray">
                 <StackPanel Orientation="Horizontal">
                     <StackPanel>

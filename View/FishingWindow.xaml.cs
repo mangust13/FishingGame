@@ -12,7 +12,6 @@ namespace FishingGame.View
     {
         private FishingViewModel _viewModel;
         private MainFacade _mainFacade;
-        private bool isFishing = false;
         private ObservableCollection<Fish> caughtFishList = new ObservableCollection<Fish>();
 
         
@@ -23,6 +22,7 @@ namespace FishingGame.View
             DataContext = _viewModel;
             _viewModel.UpdateBackground(gameFacade.LocationBackground);
             _viewModel.FishMenu = fishMenu;
+            _viewModel.ShopMenu = shopMenu;
             
             _mainFacade = gameFacade;
             BaitInfoPopup.DataContext = gameFacade.fisherman.bait;
@@ -66,23 +66,25 @@ namespace FishingGame.View
                     break;
                 case Key.F:
                     _viewModel.FishermanRect = new Rect(fishermanImage.Margin.Left, fishermanImage.Margin.Top, fishermanImage.ActualWidth, fishermanImage.ActualHeight);
-                    _viewModel.StartFishingRect = new Rect(StartFishingRect.Margin.Left, StartFishingRect.Margin.Top, StartFishingRect.ActualWidth, StartFishingRect.ActualHeight);
+                    _viewModel.CollisionRect = new Rect(StartFishingRect.Margin.Left, StartFishingRect.Margin.Top, StartFishingRect.ActualWidth, StartFishingRect.ActualHeight);
                     _viewModel.FishingCommand.Execute(null);
                     break;
                 case Key.E:
-                    OpenShop();
+                    _viewModel.FishermanRect = new Rect(fishermanImage.Margin.Left, fishermanImage.Margin.Top, fishermanImage.ActualWidth, fishermanImage.ActualHeight);
+                    _viewModel.CollisionRect = new Rect(ShopRect.Margin.Left, ShopRect.Margin.Top, ShopRect.ActualWidth, ShopRect.ActualHeight);
+                    _viewModel.OpenShopCommand.Execute(null);
                     break;
                 default:
                     break;
             }
         }
-        public void OpenShop()
-        {
-            CollectBaitCheckCollision();
-            OpenShopCheckCollision();
-            if (_mainFacade.fisherman.bait != null)
-                OnBaitChanged(this, EventArgs.Empty);
-        }
+        //public void OpenShop()
+        //{
+        //    OpenShopCheckCollision();
+        //    CollectBaitCheckCollision();
+        //    if (_mainFacade.fisherman.bait != null)
+        //        OnBaitChanged(this, EventArgs.Empty);
+        //}
 
         public void CollectBaitCheckCollision()
         {
@@ -95,19 +97,6 @@ namespace FishingGame.View
                 BaitCollect.Source = null;
             }
         }
-
-        public void OpenShopCheckCollision()
-        {
-            Rect fishermanRect = new Rect(fishermanImage.Margin.Left, fishermanImage.Margin.Top, fishermanImage.ActualWidth, fishermanImage.ActualHeight);
-            Rect shopRect = new Rect(ShopRect.Margin.Left, ShopRect.Margin.Top, ShopRect.ActualWidth, ShopRect.ActualHeight);
-
-            if (fishermanRect.IntersectsWith(shopRect))
-            {
-                ShopPopup.IsOpen = !ShopPopup.IsOpen;
-            }
-        }
-
-        
 
         private void FishermanIcon_MouseDown(object sender, MouseEventArgs e)
         {
@@ -150,7 +139,6 @@ namespace FishingGame.View
                 caughtFishList.Add(_mainFacade.fishPrototypes[0].Clone());
 
             DisplayFishCost();
-            isFishing = false;
             fishMenu.IsOpen = false;
             UpdateFishermanInfoPopup();
         }
@@ -217,11 +205,11 @@ namespace FishingGame.View
                     totalCost -= selectedBait.Cost;
                     _mainFacade.fisherman.bait = selectedBait;
                     OnBaitChanged(this, EventArgs.Empty);
-                    ShopPopup.IsOpen = false;
+                    shopMenu.IsOpen = false;
                     shopImage.Visibility = Visibility.Collapsed;
 
                     string priceTextBlockName = "Price" + itemName;
-                    TextBlock priceTextBlock = ShopPopup.FindName(priceTextBlockName) as TextBlock;
+                    TextBlock priceTextBlock = shopMenu.FindName(priceTextBlockName) as TextBlock;
                     if (priceTextBlock != null)
                         priceTextBlock.Visibility = Visibility.Collapsed;
                 }
@@ -238,11 +226,11 @@ namespace FishingGame.View
                     totalCost -= selectedRod.Cost;
                     _mainFacade.fisherman.rod = selectedRod;
                     OnRodChanged(this, EventArgs.Empty);
-                    ShopPopup.IsOpen = false;
+                    shopMenu.IsOpen = false;
                     shopImage.Visibility = Visibility.Collapsed;
 
                     string priceTextBlockName = "Price" + itemName;
-                    TextBlock priceTextBlock = ShopPopup.FindName(priceTextBlockName) as TextBlock;
+                    TextBlock priceTextBlock = shopMenu.FindName(priceTextBlockName) as TextBlock;
                     if (priceTextBlock != null)
                         priceTextBlock.Visibility = Visibility.Collapsed;
                 }

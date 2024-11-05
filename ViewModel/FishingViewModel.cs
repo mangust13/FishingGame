@@ -57,16 +57,9 @@ namespace FishingGame.ViewModel
                 OnPropertyChanged(nameof(FishermanImage));
             }
         }
-        private bool _isFishing = false;
-        public bool IsFishing
-        {
-            get => _isFishing;
-            set
-            {
-                _isFishing = value;
-                OnPropertyChanged(nameof(IsFishing));
-            }
-        }
+        public bool isFishing = false;
+
+
         private bool _isAnimating;
         private Rect _fishermanRect;
         public Rect FishermanRect
@@ -78,14 +71,14 @@ namespace FishingGame.ViewModel
                 OnPropertyChanged(nameof(FishermanRect));
             }
         }
-        private Rect _startFishingRect;
-        public Rect StartFishingRect
+        private Rect _collisionRect;
+        public Rect CollisionRect
         {
-            get => _startFishingRect;
+            get => _collisionRect;
             set
             {
-                _startFishingRect = value;
-                OnPropertyChanged(nameof(StartFishingRect));
+                _collisionRect = value;
+                OnPropertyChanged(nameof(CollisionRect));
             }
         }
 
@@ -99,13 +92,24 @@ namespace FishingGame.ViewModel
                 OnPropertyChanged(nameof(FishMenu));
             }
         }
+        private Popup _shopMenu;
+        public Popup ShopMenu
+        {
+            get => _shopMenu;
+            set
+            {
+                _shopMenu = value;
+                OnPropertyChanged(nameof(ShopMenu));
+            }
+        }
 
         public ICommand MoveLeftCommand { get; }
         public ICommand MoveRightCommand { get; }
         public ICommand MoveUpCommand { get; }
         public ICommand MoveDownCommand { get; }
         public ICommand FishingCommand { get; }
-        
+        public ICommand OpenShopCommand { get; }
+
         List<Uri> _hookUris = new List<Uri>
         {
             new Uri("../Assets/Fishermen/FishermanAnimation/Animation1.png", UriKind.RelativeOrAbsolute),
@@ -145,27 +149,26 @@ namespace FishingGame.ViewModel
             MoveUpCommand = new RelayCommand(_ => MoveUp());
             MoveDownCommand = new RelayCommand(_ => MoveDown());
             FishingCommand = new RelayCommand(_ => Fishing());
+            OpenShopCommand = new RelayCommand(_ => OpenShop());
         }
         public async void Fishing()
         {
-            if (!IsFishing && StartFishingCheckCollision() && !_isAnimating)
+            if (!FishMenu.IsOpen && CheckCollision() && !_isAnimating)
             {
-                IsFishing = true;
                 await HookAnimation();
                 FishMenu.IsOpen = true;
                 DisplayFishByWeightCapacity();
             }
-            else if (IsFishing && StartFishingCheckCollision() && !_isAnimating)
+            else if (FishMenu.IsOpen && CheckCollision() && !_isAnimating)
             {
-                IsFishing = false;
                 await HookAnimationReverse();
                 FishMenu.IsOpen = false;
             }
         }
 
-        public bool StartFishingCheckCollision()
+        public bool CheckCollision()
         {
-            return FishermanRect.IntersectsWith(StartFishingRect);
+            return FishermanRect.IntersectsWith(CollisionRect);
         }
         private async Task HookAnimation()
         {
@@ -217,6 +220,18 @@ namespace FishingGame.ViewModel
         {
             FishermanPositionTop += _animationStep;
             UpdateAnimation();
+        }
+        private void OpenShop()
+        {
+            ShopMenu.IsOpen = false;
+            if (!ShopMenu.IsOpen & CheckCollision())
+            {
+                ShopMenu.IsOpen = true;
+            }
+            else if (ShopMenu.IsOpen & CheckCollision())
+            {
+                ShopMenu.IsOpen = false;
+            }
         }
 
         public void DisplayFishByWeightCapacity()
