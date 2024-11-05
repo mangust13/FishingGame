@@ -14,7 +14,6 @@ namespace FishingGame.View
         private MainFacade _mainFacade;
         private ObservableCollection<Fish> caughtFishList = new ObservableCollection<Fish>();
 
-        
         public FishingWindow(MainFacade gameFacade)
         {
             InitializeComponent();
@@ -24,16 +23,19 @@ namespace FishingGame.View
             _viewModel.FishMenu = fishMenu;
             _viewModel.ShopMenu = shopMenu;
             
+            _viewModel.FishermanInfoPopup = fishermanInfoPopup;
+
+
             _mainFacade = gameFacade;
             BaitInfoPopup.DataContext = gameFacade.fisherman.bait;
             RodInfoPopup.DataContext = gameFacade.fisherman.rod;
-            FishermanInfoPopup.DataContext = gameFacade.fisherman;
+            
 
             gameFacade.fisherman.BaitChanged += OnBaitChanged;
             gameFacade.fisherman.RodChanged += OnRodChanged;
 
             this.KeyDown += FishingWindow_KeyDown;
-            DisplayFishCost();            
+            _viewModel.DisplayFishCost();
         }
 
         private void OnBaitChanged(object sender, EventArgs e)
@@ -53,16 +55,20 @@ namespace FishingGame.View
             switch (e.Key)
             {
                 case Key.Left:
-                    _viewModel.MoveLeftCommand.Execute(null);
+                    if (!_viewModel.isFishing)
+                        _viewModel.MoveLeftCommand.Execute(null);
                     break;
                 case Key.Right:
-                    _viewModel.MoveRightCommand.Execute(null);
+                    if (!_viewModel.isFishing)
+                        _viewModel.MoveRightCommand.Execute(null);
                     break;
                 case Key.Up:
-                    _viewModel.MoveUpCommand.Execute(null);
+                    if (!_viewModel.isFishing)
+                        _viewModel.MoveUpCommand.Execute(null);
                     break;
                 case Key.Down:
-                    _viewModel.MoveDownCommand.Execute(null);
+                    if (!_viewModel.isFishing)
+                        _viewModel.MoveDownCommand.Execute(null);
                     break;
                 case Key.F:
                     _viewModel.FishermanRect = new Rect(fishermanImage.Margin.Left, fishermanImage.Margin.Top, fishermanImage.ActualWidth, fishermanImage.ActualHeight);
@@ -100,96 +106,22 @@ namespace FishingGame.View
 
         private void FishermanIcon_MouseDown(object sender, MouseEventArgs e)
         {
-            FishermanInfoPopup.IsOpen = !FishermanInfoPopup.IsOpen;
+            fishermanInfoPopup.IsOpen = !fishermanInfoPopup.IsOpen;
             BaitInfoPopup.IsOpen = false;
             RodInfoPopup.IsOpen = false;
         }
         private void BaitIcon_MouseDown(object sender, MouseEventArgs e)
         {
             BaitInfoPopup.IsOpen = !BaitInfoPopup.IsOpen;
-            FishermanInfoPopup.IsOpen = false;
+            fishermanInfoPopup.IsOpen = false;
             RodInfoPopup.IsOpen = false;
         }
         private void RodIcon_MouseDown(object sender, MouseEventArgs e)
         {
             RodInfoPopup.IsOpen = !RodInfoPopup.IsOpen;
-            FishermanInfoPopup.IsOpen = false;
+            fishermanInfoPopup.IsOpen = false;
             BaitInfoPopup.IsOpen = false;
         }
-
-        private async void FishImage_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (caughtFishList.Count >= 7)
-            {
-                MessageBox.Show("Your inventory is full.");
-                return;
-            }
-
-            int fishIndex = menuPanel.Children.IndexOf((UIElement)sender);
-            Fish selectedFish = _mainFacade.fishPrototypes[fishIndex].Clone();
-            Random random = new Random();
-
-            if (_mainFacade.fisherman.bait.Chance > random.NextDouble() * 100)
-            {
-                caughtFishList.Add(selectedFish);
-
-                await CheckEndGameCondition(selectedFish);
-            }
-            else
-                caughtFishList.Add(_mainFacade.fishPrototypes[0].Clone());
-
-            DisplayFishCost();
-            fishMenu.IsOpen = false;
-            UpdateFishermanInfoPopup();
-        }
-        private async Task CheckEndGameCondition(Fish selectedFish)
-        {
-            await Task.Delay(50);
-
-            if (selectedFish.Name == "Shark")
-            {
-                _mainFacade.ShowEndGameWindow();
-                this.Close();
-            }
-        }
-
-        int totalCost = 0;
-        private void DisplayFishCost()
-        {
-            foreach (Fish fish in caughtFishList)
-                totalCost += fish.Cost;
-
-            FishCostText.Text = "Total Fish Cost: " + totalCost.ToString();
-        }
-        private void UpdateFishermanInfoPopup()
-        {
-            var itemsControl = FindChild<ItemsControl>(FishermanInfoPopup.Child);
-            if (itemsControl != null)
-            {
-                itemsControl.ItemsSource = caughtFishList;
-            }
-        }
-
-        private T FindChild<T>(DependencyObject parent) where T : DependencyObject
-        {
-            if (parent == null) return null;
-
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
-            {
-                var child = VisualTreeHelper.GetChild(parent, i);
-
-                if (child is T typedChild)
-                {
-                    return typedChild;
-                }
-
-                var result = FindChild<T>(child);
-                if (result != null) return result;
-            }
-
-            return null;
-        }
-
         private void ShopImage_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Image shopImage = sender as Image;
@@ -200,9 +132,9 @@ namespace FishingGame.View
                 int baitIndex = int.Parse(itemName.Substring(4)) - 1;
                 Bait selectedBait = _mainFacade.Baits[baitIndex].Clone();
 
-                if (totalCost >= selectedBait.Cost)
+                if (_viewModel._totalCost >= selectedBait.Cost)
                 {
-                    totalCost -= selectedBait.Cost;
+                    _viewModel._totalCost -= selectedBait.Cost;
                     _mainFacade.fisherman.bait = selectedBait;
                     OnBaitChanged(this, EventArgs.Empty);
                     shopMenu.IsOpen = false;
@@ -221,9 +153,9 @@ namespace FishingGame.View
                 int rodIndex = int.Parse(itemName.Substring(3)) - 1;
                 Rod selectedRod = _mainFacade.Rods[rodIndex].Clone();
 
-                if (totalCost >= selectedRod.Cost)
+                if (_viewModel._totalCost >= selectedRod.Cost)
                 {
-                    totalCost -= selectedRod.Cost;
+                    _viewModel._totalCost -= selectedRod.Cost;
                     _mainFacade.fisherman.rod = selectedRod;
                     OnRodChanged(this, EventArgs.Empty);
                     shopMenu.IsOpen = false;
@@ -237,9 +169,9 @@ namespace FishingGame.View
                 else
                     MessageBox.Show("You don't have enough money to buy this rod.");
             }
-            FishCostText.Text = "Total Fish Cost: " + totalCost.ToString();
+            //FishCostText.Text = "Total Fish Cost: " + _viewModel.totalCost.ToString();
             caughtFishList.Clear();
-            UpdateFishermanInfoPopup();
+            _viewModel.UpdateFishermanInfoPopup();
         }
     }
 }

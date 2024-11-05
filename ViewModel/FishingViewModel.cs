@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
@@ -57,6 +58,17 @@ namespace FishingGame.ViewModel
                 OnPropertyChanged(nameof(FishermanImage));
             }
         }
+
+        private Popup _fishermanInfoPopup;
+        public Popup FishermanInfoPopup
+        {
+            get => _fishermanInfoPopup;
+            set
+            {
+                _fishermanInfoPopup = value;
+                OnPropertyChanged(nameof(FishermanInfoPopup));
+            }
+        }
         public bool isFishing = false;
 
 
@@ -92,6 +104,7 @@ namespace FishingGame.ViewModel
                 OnPropertyChanged(nameof(FishMenu));
             }
         }
+
         private Popup _shopMenu;
         public Popup ShopMenu
         {
@@ -109,6 +122,7 @@ namespace FishingGame.ViewModel
         public ICommand MoveDownCommand { get; }
         public ICommand FishingCommand { get; }
         public ICommand OpenShopCommand { get; }
+        public ICommand CatchFishCommand { get; }
 
         List<Uri> _hookUris = new List<Uri>
         {
@@ -150,6 +164,7 @@ namespace FishingGame.ViewModel
             MoveDownCommand = new RelayCommand(_ => MoveDown());
             FishingCommand = new RelayCommand(_ => Fishing());
             OpenShopCommand = new RelayCommand(_ => OpenShop());
+            CatchFishCommand = new RelayCommand(parameter => CatchFish(parameter));
         }
         public async void Fishing()
         {
@@ -173,7 +188,7 @@ namespace FishingGame.ViewModel
         private async Task HookAnimation()
         {
             _isAnimating = true;
-            for (int i = 0 ; i <= _hookUris.Count - 1; ++i)
+            for (int i = 0; i <= _hookUris.Count - 1; ++i)
             {
                 FishermanImage = new BitmapImage(_hookUris[i]);
                 await Task.Delay(100);
@@ -236,7 +251,6 @@ namespace FishingGame.ViewModel
 
         public void DisplayFishByWeightCapacity()
         {
-
             List<Fish> fishToShow = _mainFacade.fishPrototypes
                 .Where(f => f.Size <= _mainFacade.fisherman.rod.WeightCapacity)
                 .ToList();
@@ -244,51 +258,151 @@ namespace FishingGame.ViewModel
             if (fishToShow.Count >= 2)
             {
                 FishMenu.Width = 100;
+
                 Fish crucian = fishToShow[0].Clone();
-                Image crucianImage = (Image)FishMenu.FindName("CrucianImage");
-                crucianImage.Source = crucian.Image;
+                Button crucianButton = (Button)FishMenu.FindName("CrucianButton");
+                if (crucianButton != null)
+                {
+                    crucianButton.Content = new Image { Source = crucian.Image, Stretch = Stretch.Fill };
+                }
 
                 Fish perch = fishToShow[1].Clone();
-                Image perchImage = (Image)FishMenu.FindName("PerchImage");
-                perchImage.Source = perch.Image;
+                Button perchButton = (Button)FishMenu.FindName("PerchButton");
+                if (perchButton != null)
+                {
+                    perchButton.Content = new Image { Source = perch.Image, Stretch = Stretch.Fill };
+                }
             }
             if (fishToShow.Count >= 4)
             {
                 FishMenu.Width = 200;
 
                 Fish salmon = fishToShow[2].Clone();
-                Image salmonImage = (Image)FishMenu.FindName("SalmonImage");
-                salmonImage.Source = salmon.Image;
+                Button salmonButton = (Button)FishMenu.FindName("SalmonButton");
+                if (salmonButton != null)
+                {
+                    salmonButton.Content = new Image { Source = salmon.Image, Stretch = Stretch.Fill };
+                }
 
                 Fish flounder = fishToShow[3].Clone();
-                Image flounderImage = (Image)FishMenu.FindName("FlounderImage");
-                flounderImage.Source = flounder.Image;
+                Button flounderButton = (Button)FishMenu.FindName("FlounderButton");
+                if (flounderButton != null)
+                {
+                    flounderButton.Content = new Image { Source = flounder.Image, Stretch = Stretch.Fill };
+                }
             }
             if (fishToShow.Count >= 5)
             {
                 FishMenu.Width = 250;
 
                 Fish tuna = fishToShow[4].Clone();
-                Image tunaImage = (Image)FishMenu.FindName("TunaImage");
-                tunaImage.Source = tuna.Image;
+                Button tunaButton = (Button)FishMenu.FindName("TunaButton");
+                if (tunaButton != null)
+                {
+                    tunaButton.Content = new Image { Source = tuna.Image, Stretch = Stretch.Fill };
+                }
             }
             if (fishToShow.Count >= 6)
             {
                 FishMenu.Width = 300;
 
                 Fish seaDevil = fishToShow[5].Clone();
-                Image seaDevilImage = (Image)FishMenu.FindName("SeaDevilImage");
-                seaDevilImage.Source = seaDevil.Image;
+                Button seaDevilButton = (Button)FishMenu.FindName("SeaDevilButton");
+                if (seaDevilButton != null)
+                {
+                    seaDevilButton.Content = new Image { Source = seaDevil.Image, Stretch = Stretch.Fill };
+                }
             }
             if (fishToShow.Count >= 7)
             {
                 FishMenu.Width = 350;
 
                 Fish shark = fishToShow[6].Clone();
-                Image sharkImage = (Image)FishMenu.FindName("SharkImage");
-                sharkImage.Source = shark.Image;
+                Button sharkButton = (Button)FishMenu.FindName("SharkButton");
+                if (sharkButton != null)
+                {
+                    sharkButton.Content = new Image { Source = shark.Image, Stretch = Stretch.Fill };
+                }
             }
         }
 
+        private async Task CheckEndGameCondition(Fish selectedFish)
+        {
+            await Task.Delay(50);
+
+            if (selectedFish.Name == "Shark")
+            {
+                _mainFacade.ShowEndGameWindow();
+                Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive)?.Close();
+            }
+        }
+        public void DisplayFishCost()
+        {
+            _totalCost = _caughtFishList.Sum(fish => fish.Cost);
+            OnPropertyChanged(nameof(TotalFishCostText));
+        }
+        private ObservableCollection<Fish> _caughtFishList = new ObservableCollection<Fish>();
+        public ObservableCollection<Fish> CaughtFishList
+        {
+            get => _caughtFishList;
+            set
+            {
+                _caughtFishList = value;
+                OnPropertyChanged(nameof(CaughtFishList));
+            }
+        }
+
+        public int _totalCost;
+        public string TotalFishCostText
+        {
+            get => $"Total Fish Cost: {_totalCost}";
+            private set
+            {
+                _totalCost = _caughtFishList.Sum(fish => fish.Cost);
+                OnPropertyChanged(nameof(TotalFishCostText));
+            }
+        }
+
+        public void UpdateFishermanInfoPopup()
+        {
+            _totalCost = _caughtFishList.Sum(fish => fish.Cost);
+            OnPropertyChanged(nameof(TotalFishCostText));
+        }
+
+        public void AddFish(Fish fish)
+        {
+            CaughtFishList.Add(fish);
+            UpdateFishermanInfoPopup();
+        }
+
+        private async void CatchFish(object parameter)
+        {
+            if (CaughtFishList.Count >= 7)
+            {
+                MessageBox.Show("Your inventory is full.");
+                return;
+            }
+
+            if (parameter is string fishIndex)
+            {
+                int index = int.Parse((string)parameter);
+                Fish selectedFish = _mainFacade.fishPrototypes[index].Clone();
+                Random random = new Random();
+
+                if (_mainFacade.fisherman.bait.Chance > random.NextDouble() * 100)
+                {
+                    AddFish(selectedFish);
+                    await CheckEndGameCondition(selectedFish);
+
+                }
+                else
+                {
+                    AddFish(_mainFacade.fishPrototypes[0].Clone());
+                }
+
+                FishMenu.IsOpen = false;
+                await HookAnimationReverse();
+            }
+        }
     }
 }

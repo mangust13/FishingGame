@@ -8,7 +8,7 @@
         WindowState="Maximized"
         ResizeMode="NoResize"
         KeyDown="FishingWindow_KeyDown">
-    
+
     <Window.Resources>
         <local:PositionConverter x:Key="PositionConverter"/>
     </Window.Resources>
@@ -30,10 +30,11 @@
         <Rectangle Width="60" Height="60"
             Margin="0,0,-800,750" Stroke="Black" StrokeThickness="3"/>
 
-        <Popup x:Name="FishermanInfoPopup" PlacementTarget="{Binding ElementName=FishermanIcon}" Placement="Bottom" IsOpen="False">
+        <!--Fisherman Popup-->
+        <Popup x:Name="fishermanInfoPopup" PlacementTarget="{Binding ElementName=FishermanIcon}" Placement="Bottom" IsOpen="False">
             <Border BorderThickness="1" BorderBrush="Black" Background="LightGray" Padding="10">
                 <StackPanel>
-                    <ItemsControl ItemsSource="{Binding SelectedFishList}">
+                    <ItemsControl ItemsSource="{Binding CaughtFishList}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -43,10 +44,13 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                    <TextBlock x:Name="FishCostText" FontWeight="Bold" Margin="0,10,0,0"/>
+                    <TextBlock Text="{Binding TotalFishCostText}" FontWeight="Bold" Margin="0,10,0,0"/>
                 </StackPanel>
             </Border>
         </Popup>
+
+
+
 
         <!--Bait-->
         <Image x:Name="BaitIcon" Source="/Assets/Baits/Bait1.jpg" Width="60" Height="60" 
@@ -65,7 +69,7 @@
             Margin="-1400,0,0,-400"/>
         <Rectangle x:Name="BaitCollectRect"
                    Width="60" Height="60" Margin="-1400,500,0,100"/>
-        
+
         <!--Rod-->
         <Image x:Name="RodIcon" Source="/Assets/Rods/Rod1.jpg" Width="60" Height="60" 
                Margin="0,0,-1200,750" MouseDown="RodIcon_MouseDown"/>
@@ -82,25 +86,54 @@
         <!--Fishing menu-->
         <Rectangle x:Name="StartFishingRect" Width="35" Height="140"
            Margin="400, 55, 0,0" Stroke="Black" StrokeThickness="3"/>
-        
+
         <Popup x:Name="fishMenu" PlacementTarget="{Binding ElementName=fishermanImage}" IsOpen="False">
             <Border BorderThickness="1" BorderBrush="Black" Background="LightGray">
-                <StackPanel x:Name="menuPanel" Orientation="Horizontal" >
-                    <Image x:Name="CrucianImage" Width="40" Margin="5" MouseDown="FishImage_MouseDown"/>
-                    <Image x:Name="PerchImage" Width="40" Margin="5" MouseDown="FishImage_MouseDown"/>
-                    <Image x:Name="SalmonImage" Width="40" Margin="5" MouseDown="FishImage_MouseDown"/>
-                    <Image x:Name="FlounderImage" Width="40" Margin="5" MouseDown="FishImage_MouseDown"/>
-                    <Image x:Name="TunaImage" Width="40" Margin="5" MouseDown="FishImage_MouseDown"/>
-                    <Image x:Name="SeaDevilImage" Width="40" Margin="5" MouseDown="FishImage_MouseDown"/>
-                    <Image x:Name="SharkImage" Width="40" Margin="5" MouseDown="FishImage_MouseDown"/>
+                <StackPanel x:Name="fishPanel" Orientation="Horizontal">
+                    <Button Width="40" Height="40" Margin="5" Command="{Binding CatchFishCommand}" CommandParameter="0">
+                        <Button.Content>
+                            <Image Source="../Assets/Fishes/Crucian.png" Stretch="Fill"/>
+                        </Button.Content>
+                    </Button>
+                    <Button Width="40" Height="40" Margin="5" Command="{Binding CatchFishCommand}" CommandParameter="1">
+                        <Button.Content>
+                            <Image Source="../Assets/Fishes/Perch.png" Stretch="Fill"/>
+                        </Button.Content>
+                    </Button>
+                    <Button Width="40" Height="40" Margin="5" Command="{Binding CatchFishCommand}" CommandParameter="2">
+                        <Button.Content>
+                                    <Image Source="../Assets/Fishes/Salmon.png" Stretch="Fill"/>
+                        </Button.Content>
+                    </Button>
+                    <Button Width="40" Height="40" Margin="5" Command="{Binding CatchFishCommand}" CommandParameter="3">
+                        <Button.Content>
+                            <Image Source="../Assets/Fishes/Flounder.png" Stretch="Fill"/>
+                        </Button.Content>
+                    </Button>
+                    <Button Width="40" Height="40" Margin="5" Command="{Binding CatchFishCommand}" CommandParameter="4">
+                        <Button.Content>
+                            <Image Source="../Assets/Fishes/Tuna.png" Stretch="Fill"/>
+                        </Button.Content>
+                    </Button>
+                    <Button Width="40" Height="40" Margin="5" Command="{Binding CatchFishCommand}" CommandParameter="5">
+                        <Button.Content>
+                            <Image Source="../Assets/Fishes/SeaDevil.png" Stretch="Fill"/>
+                        </Button.Content>
+                    </Button>
+                    <Button Width="40" Height="40" Margin="5" Command="{Binding CatchFishCommand}" CommandParameter="6">
+                        <Button.Content>
+                            <Image Source="../Assets/Fishes/Shark.png" Stretch="Fill"/>
+                        </Button.Content>
+                    </Button>
                 </StackPanel>
             </Border>
         </Popup>
-        
+
+
         <!--Shop-->
         <Rectangle x:Name="ShopRect" Width="100" Height="100"
             Margin="-180,-65,100,100" Stroke="Black" StrokeThickness="3"/>
-        
+
         <Popup x:Name="shopMenu" PlacementTarget="{Binding ElementName=fishermanImage}" IsOpen="False">
             <Border BorderThickness="1" BorderBrush="Black" Background="LightGray">
                 <StackPanel Orientation="Horizontal">
