@@ -82,7 +82,7 @@
         <Rectangle x:Name="StartFishingRect" Width="35" Height="140" Margin="400, 55, 0,0" Stroke="Black" StrokeThickness="3"/>
 
         <!--Fishing menu-->
-        <Popup x:Name="menuPopup" PlacementTarget="{Binding ElementName=fishermanImage}"  IsOpen="False">
+        <Popup x:Name="fishMenu" PlacementTarget="{Binding ElementName=fishermanImage}"  IsOpen="False">
             <Border BorderThickness="1" BorderBrush="Black" Background="LightGray">
                 <StackPanel x:Name="menuPanel" Orientation="Horizontal" >
                     <Image x:Name="CrucianImage" Width="40" Margin="5" MouseDown="FishImage_MouseDown"/>

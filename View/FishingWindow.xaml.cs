@@ -2,11 +2,8 @@
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Controls;
 using FishingGame.ViewModel;
-using System;
-using System.Windows.Controls.Primitives;
 using FishingGame.Model;
 
 namespace FishingGame.View
@@ -25,7 +22,7 @@ namespace FishingGame.View
             _viewModel = new FishingViewModel(gameFacade);
             DataContext = _viewModel;
             _viewModel.UpdateBackground(gameFacade.LocationBackground);
-            _viewModel.FishMenu = menuPopup;
+            _viewModel.FishMenu = fishMenu;
             
             _mainFacade = gameFacade;
             BaitInfoPopup.DataContext = gameFacade.fisherman.bait;
@@ -152,11 +149,9 @@ namespace FishingGame.View
             else
                 caughtFishList.Add(_mainFacade.fishPrototypes[0].Clone());
 
-            // Додати вибрану рибу до зв'язаного списку
-            //HookAnimationReverse();
             DisplayFishCost();
             isFishing = false;
-            menuPopup.IsOpen = false;
+            fishMenu.IsOpen = false;
             UpdateFishermanInfoPopup();
         }
         private async Task CheckEndGameCondition(Fish selectedFish)
