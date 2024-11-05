@@ -50,8 +50,6 @@
         </Popup>
 
 
-
-
         <!--Bait-->
         <Image x:Name="BaitIcon" Source="/Assets/Baits/Bait1.jpg" Width="60" Height="60" 
             Margin="0,0,-1400,750" MouseDown="BaitIcon_MouseDown"/>
@@ -64,11 +62,6 @@
                 </StackPanel>
             </Border>
         </Popup>
-
-        <Image x:Name="BaitCollect" Source="/Assets/Baits/Bait4NoBack.png" Width="60" Height="60" 
-            Margin="-1400,0,0,-400"/>
-        <Rectangle x:Name="BaitCollectRect"
-                   Width="60" Height="60" Margin="-1400,500,0,100"/>
 
         <!--Rod-->
         <Image x:Name="RodIcon" Source="/Assets/Rods/Rod1.jpg" Width="60" Height="60" 
@@ -139,31 +132,35 @@
                 <StackPanel Orientation="Horizontal">
                     <StackPanel>
                         <Image x:Name="Bait2" Width="40" Margin="5" MouseDown="ShopImage_MouseDown"/>
-                        <TextBlock x:Name="PriceBait2" Text="100" TextAlignment="Center"/>
+                        <TextBlock x:Name="PriceBait2" Text="30" TextAlignment="Center"/>
                     </StackPanel>
                     <StackPanel>
                         <Image x:Name="Bait3" Width="40" Margin="5" MouseDown="ShopImage_MouseDown"/>
-                        <TextBlock x:Name="PriceBait3" Text="200" TextAlignment="Center"/>
+                        <TextBlock x:Name="PriceBait3" Text="50" TextAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Image x:Name="Bait4" Width="40" Margin="5" MouseDown="ShopImage_MouseDown"/>
+                        <TextBlock x:Name="PriceBait4" Text="90" TextAlignment="Center"/>
                     </StackPanel>
                     <StackPanel>
                         <Image x:Name="Bait5" Width="40" Margin="5" MouseDown="ShopImage_MouseDown"/>
-                        <TextBlock x:Name="PriceBait5" Text="400" TextAlignment="Center"/>
+                        <TextBlock x:Name="PriceBait5" Text="130" TextAlignment="Center"/>
                     </StackPanel>
                     <StackPanel>
                         <Image x:Name="Rod2" Width="40" Margin="5" MouseDown="ShopImage_MouseDown"/>
-                        <TextBlock x:Name="PriceRod2" Text="100" TextAlignment="Center"/>
+                        <TextBlock x:Name="PriceRod2" Text="30" TextAlignment="Center"/>
                     </StackPanel>
                     <StackPanel>
                         <Image x:Name="Rod3" Width="40" Margin="5" MouseDown="ShopImage_MouseDown"/>
-                        <TextBlock x:Name="PriceRod3" Text="200" TextAlignment="Center"/>
+                        <TextBlock x:Name="PriceRod3" Text="50" TextAlignment="Center"/>
                     </StackPanel>
                     <StackPanel>
                         <Image x:Name="Rod4" Width="40" Margin="5" MouseDown="ShopImage_MouseDown"/>
-                        <TextBlock x:Name="PriceRod4" Text="300" TextAlignment="Center"/>
+                        <TextBlock x:Name="PriceRod4" Text="90" TextAlignment="Center"/>
                     </StackPanel>
                     <StackPanel>
                         <Image x:Name="Rod5" Width="40" Margin="5" MouseDown="ShopImage_MouseDown"/>
-                        <TextBlock x:Name="PriceRod5" Text="400" TextAlignment="Center"/>
+                        <TextBlock x:Name="PriceRod5" Text="130" TextAlignment="Center"/>
                     </StackPanel>
                 </StackPanel>
             </Border>

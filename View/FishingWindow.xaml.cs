@@ -12,7 +12,6 @@ namespace FishingGame.View
     {
         private FishingViewModel _viewModel;
         private MainFacade _mainFacade;
-        private ObservableCollection<Fish> caughtFishList = new ObservableCollection<Fish>();
 
         public FishingWindow(MainFacade gameFacade)
         {
@@ -24,7 +23,6 @@ namespace FishingGame.View
             _viewModel.ShopMenu = shopMenu;
             
             _viewModel.FishermanInfoPopup = fishermanInfoPopup;
-
 
             _mainFacade = gameFacade;
             BaitInfoPopup.DataContext = gameFacade.fisherman.bait;
@@ -82,25 +80,6 @@ namespace FishingGame.View
                     break;
                 default:
                     break;
-            }
-        }
-        //public void OpenShop()
-        //{
-        //    OpenShopCheckCollision();
-        //    CollectBaitCheckCollision();
-        //    if (_mainFacade.fisherman.bait != null)
-        //        OnBaitChanged(this, EventArgs.Empty);
-        //}
-
-        public void CollectBaitCheckCollision()
-        {
-            Rect fishermanRect = new Rect(fishermanImage.Margin.Left, fishermanImage.Margin.Top, fishermanImage.ActualWidth, fishermanImage.ActualHeight);
-            Rect rectangleRect = new Rect(BaitCollectRect.Margin.Left, BaitCollectRect.Margin.Top, BaitCollectRect.ActualWidth, BaitCollectRect.ActualHeight);
-
-            if (fishermanRect.IntersectsWith(rectangleRect))
-            {
-                _mainFacade.fisherman.bait = _mainFacade.Baits[3].Clone();
-                BaitCollect.Source = null;
             }
         }
 
@@ -169,8 +148,7 @@ namespace FishingGame.View
                 else
                     MessageBox.Show("You don't have enough money to buy this rod.");
             }
-            //FishCostText.Text = "Total Fish Cost: " + _viewModel.totalCost.ToString();
-            caughtFishList.Clear();
+            _viewModel.CaughtFishList.Clear();
             _viewModel.UpdateFishermanInfoPopup();
         }
     }

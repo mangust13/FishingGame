@@ -64,19 +64,19 @@ namespace FishingGame.Model
         private void InitializeBaits()
         {
             Baits.Add(new Bait("Lvl1", 0, 30, new BitmapImage(new Uri("../Assets/Baits/Bait1.jpg", UriKind.Relative))));
-            Baits.Add(new Bait("Lvl2", 100, 40, new BitmapImage(new Uri("../Assets/Baits/Bait2.jpg", UriKind.Relative))));
-            Baits.Add(new Bait("Lvl3", 200, 50, new BitmapImage(new Uri("../Assets/Baits/Bait3.jpg", UriKind.Relative))));
-            Baits.Add(new Bait("Lvl4", 300, 60, new BitmapImage(new Uri("../Assets/Baits/Bait4.png", UriKind.Relative))));
-            Baits.Add(new Bait("Lvl5", 400, 70, new BitmapImage(new Uri("../Assets/Baits/Bait5.jpg", UriKind.Relative))));
+            Baits.Add(new Bait("Lvl2", 30, 40, new BitmapImage(new Uri("../Assets/Baits/Bait2.jpg", UriKind.Relative))));
+            Baits.Add(new Bait("Lvl3", 50, 50, new BitmapImage(new Uri("../Assets/Baits/Bait3.jpg", UriKind.Relative))));
+            Baits.Add(new Bait("Lvl4", 90, 60, new BitmapImage(new Uri("../Assets/Baits/Bait4.png", UriKind.Relative))));
+            Baits.Add(new Bait("Lvl5", 130, 70, new BitmapImage(new Uri("../Assets/Baits/Bait5.jpg", UriKind.Relative))));
         }
 
         private void InitializeRods()
         {
             Rods.Add(new Rod("Lvl1", 0, 10, new BitmapImage(new Uri("../Assets/Rods/Rod1.jpg", UriKind.Relative))));
-            Rods.Add(new Rod("Lvl2", 100, 20, new BitmapImage(new Uri("../Assets/Rods/Rod2.jpg", UriKind.Relative))));
-            Rods.Add(new Rod("Lvl3", 200, 30, new BitmapImage(new Uri("../Assets/Rods/Rod3.jpg", UriKind.Relative))));
-            Rods.Add(new Rod("Lvl4", 300, 40, new BitmapImage(new Uri("../Assets/Rods/Rod4.jpg", UriKind.Relative))));
-            Rods.Add(new Rod("Lvl5", 400, 50, new BitmapImage(new Uri("../Assets/Rods/Rod5.jpg", UriKind.Relative))));
+            Rods.Add(new Rod("Lvl2", 30, 20, new BitmapImage(new Uri("../Assets/Rods/Rod2.jpg", UriKind.Relative))));
+            Rods.Add(new Rod("Lvl3", 50, 30, new BitmapImage(new Uri("../Assets/Rods/Rod3.jpg", UriKind.Relative))));
+            Rods.Add(new Rod("Lvl4", 90, 40, new BitmapImage(new Uri("../Assets/Rods/Rod4.jpg", UriKind.Relative))));
+            Rods.Add(new Rod("Lvl5", 130, 50, new BitmapImage(new Uri("../Assets/Rods/Rod5.jpg", UriKind.Relative))));
         }
 
         private void InitializeShop()
@@ -89,6 +89,10 @@ namespace FishingGame.Model
             Bait bait3 = Baits[2].Clone();
             image = (Image)fishingWindow.FindName("Bait3");
             image.Source = bait3.Image;
+
+            Bait bait4 = Baits[3].Clone();
+            image = (Image)fishingWindow.FindName("Bait4");
+            image.Source = bait4.Image;
 
             Bait bait5 = Baits[4].Clone();
             image = (Image)fishingWindow.FindName("Bait5");

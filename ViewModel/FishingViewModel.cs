@@ -191,7 +191,7 @@ namespace FishingGame.ViewModel
             for (int i = 0; i <= _hookUris.Count - 1; ++i)
             {
                 FishermanImage = new BitmapImage(_hookUris[i]);
-                await Task.Delay(100);
+                await Task.Delay(80);
             }
             _isAnimating = false;
         }
@@ -202,7 +202,7 @@ namespace FishingGame.ViewModel
             for (int i = _hookUris.Count - 1; i >= 0; i--)
             {
                 FishermanImage = new BitmapImage(_hookUris[i]);
-                await Task.Delay(100);
+                await Task.Delay(80);
             }
             _isAnimating = false;
         }
@@ -352,7 +352,7 @@ namespace FishingGame.ViewModel
             }
         }
 
-        public int _totalCost;
+        public int _totalCost = 0;
         public string TotalFishCostText
         {
             get => $"Total Fish Cost: {_totalCost}";
@@ -365,7 +365,6 @@ namespace FishingGame.ViewModel
 
         public void UpdateFishermanInfoPopup()
         {
-            _totalCost = _caughtFishList.Sum(fish => fish.Cost);
             OnPropertyChanged(nameof(TotalFishCostText));
         }
 
@@ -391,12 +390,14 @@ namespace FishingGame.ViewModel
 
                 if (_mainFacade.fisherman.bait.Chance > random.NextDouble() * 100)
                 {
+                    _totalCost += selectedFish.Size;
                     AddFish(selectedFish);
                     await CheckEndGameCondition(selectedFish);
-
                 }
                 else
                 {
+                    Fish crucian = _mainFacade.fishPrototypes[0].Clone();
+                    _totalCost += crucian.Size;
                     AddFish(_mainFacade.fishPrototypes[0].Clone());
                 }
 
