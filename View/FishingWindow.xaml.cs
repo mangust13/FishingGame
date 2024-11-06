@@ -36,18 +36,6 @@ namespace FishingGame.View
             _viewModel.DisplayFishCost();
         }
 
-        private void OnBaitChanged(object sender, EventArgs e)
-        {
-            BaitInfoPopup.DataContext = _mainFacade.fisherman.bait;
-            BaitIcon.Source = _mainFacade.fisherman.bait.Image;
-        }
-
-        private void OnRodChanged(object sender, EventArgs e)
-        {
-            RodInfoPopup.DataContext = _mainFacade.fisherman.rod;
-            RodIcon.Source = _mainFacade.fisherman.rod.Image;
-        }
-
         private async void FishingWindow_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.Key)
@@ -83,6 +71,18 @@ namespace FishingGame.View
             }
         }
 
+        private void OnBaitChanged(object sender, EventArgs e)
+        {
+            BaitInfoPopup.DataContext = _mainFacade.fisherman.bait;
+            BaitIcon.Source = _mainFacade.fisherman.bait.Image;
+        }
+
+        private void OnRodChanged(object sender, EventArgs e)
+        {
+            RodInfoPopup.DataContext = _mainFacade.fisherman.rod;
+            RodIcon.Source = _mainFacade.fisherman.rod.Image;
+        }
+
         private void FishermanIcon_MouseDown(object sender, MouseEventArgs e)
         {
             fishermanInfoPopup.IsOpen = !fishermanInfoPopup.IsOpen;
@@ -100,56 +100,6 @@ namespace FishingGame.View
             RodInfoPopup.IsOpen = !RodInfoPopup.IsOpen;
             fishermanInfoPopup.IsOpen = false;
             BaitInfoPopup.IsOpen = false;
-        }
-        private void ShopImage_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Image shopImage = sender as Image;
-            string itemName = shopImage.Name;
-
-            if (itemName.StartsWith("Bait"))
-            {
-                int baitIndex = int.Parse(itemName.Substring(4)) - 1;
-                Bait selectedBait = _mainFacade.Baits[baitIndex].Clone();
-
-                if (_viewModel._totalCost >= selectedBait.Cost)
-                {
-                    _viewModel._totalCost -= selectedBait.Cost;
-                    _mainFacade.fisherman.bait = selectedBait;
-                    OnBaitChanged(this, EventArgs.Empty);
-                    shopMenu.IsOpen = false;
-                    shopImage.Visibility = Visibility.Collapsed;
-
-                    string priceTextBlockName = "Price" + itemName;
-                    TextBlock priceTextBlock = shopMenu.FindName(priceTextBlockName) as TextBlock;
-                    if (priceTextBlock != null)
-                        priceTextBlock.Visibility = Visibility.Collapsed;
-                }
-                else
-                    MessageBox.Show("You don't have enough money to buy this bait.");
-            }
-            else if (itemName.StartsWith("Rod"))
-            {
-                int rodIndex = int.Parse(itemName.Substring(3)) - 1;
-                Rod selectedRod = _mainFacade.Rods[rodIndex].Clone();
-
-                if (_viewModel._totalCost >= selectedRod.Cost)
-                {
-                    _viewModel._totalCost -= selectedRod.Cost;
-                    _mainFacade.fisherman.rod = selectedRod;
-                    OnRodChanged(this, EventArgs.Empty);
-                    shopMenu.IsOpen = false;
-                    shopImage.Visibility = Visibility.Collapsed;
-
-                    string priceTextBlockName = "Price" + itemName;
-                    TextBlock priceTextBlock = shopMenu.FindName(priceTextBlockName) as TextBlock;
-                    if (priceTextBlock != null)
-                        priceTextBlock.Visibility = Visibility.Collapsed;
-                }
-                else
-                    MessageBox.Show("You don't have enough money to buy this rod.");
-            }
-            _viewModel.CaughtFishList.Clear();
-            _viewModel.UpdateFishermanInfoPopup();
         }
     }
 }

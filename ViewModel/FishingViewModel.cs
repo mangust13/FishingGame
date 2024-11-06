@@ -115,7 +115,16 @@ namespace FishingGame.ViewModel
                 OnPropertyChanged(nameof(ShopMenu));
             }
         }
-
+        public int _totalCost = 0;
+        public string TotalFishCostText
+        {
+            get => $"Total Fish Cost: {_totalCost}";
+            private set
+            {
+                _totalCost = _caughtFishList.Sum(fish => fish.Cost);
+                OnPropertyChanged(nameof(TotalFishCostText));
+            }
+        }
         public ICommand MoveLeftCommand { get; }
         public ICommand MoveRightCommand { get; }
         public ICommand MoveUpCommand { get; }
@@ -123,6 +132,8 @@ namespace FishingGame.ViewModel
         public ICommand FishingCommand { get; }
         public ICommand OpenShopCommand { get; }
         public ICommand CatchFishCommand { get; }
+        public ICommand BuyShopCommand { get; }
+
 
         List<Uri> _hookUris = new List<Uri>
         {
@@ -165,7 +176,79 @@ namespace FishingGame.ViewModel
             FishingCommand = new RelayCommand(_ => Fishing());
             OpenShopCommand = new RelayCommand(_ => OpenShop());
             CatchFishCommand = new RelayCommand(parameter => CatchFish(parameter));
+            BuyShopCommand = new RelayCommand(parameter => BuyShop(parameter));
         }
+        private void BuyShop(object parameter)
+        {
+            if (parameter is string itemName)
+            {
+                if (itemName.StartsWith("Bait"))
+                {
+                    int baitIndex = int.Parse(itemName.Substring(4)) - 1;
+                    Bait selectedBait = _mainFacade.Baits[baitIndex].Clone();
+
+                    if (_totalCost >= selectedBait.Cost)
+                    {
+                        _totalCost -= selectedBait.Cost;
+                        _mainFacade.fisherman.bait = selectedBait;
+                        OnPropertyChanged(nameof(TotalFishCostText));
+                        //OnBaitChanged();
+                        ShopMenu.IsOpen = false;
+                        HideShopItem(itemName);
+                    }
+                    else
+                    {
+                        MessageBox.Show("You don't have enough money to buy this bait.");
+                    }
+                }
+                else if (itemName.StartsWith("Rod"))
+                {
+                    int rodIndex = int.Parse(itemName.Substring(3)) - 1;
+                    Rod selectedRod = _mainFacade.Rods[rodIndex].Clone();
+
+                    if (_totalCost >= selectedRod.Cost)
+                    {
+                        _totalCost -= selectedRod.Cost;
+                        _mainFacade.fisherman.rod = selectedRod;
+                        OnPropertyChanged(nameof(TotalFishCostText));
+                        //OnRodChanged();
+                        ShopMenu.IsOpen = false;
+                        HideShopItem(itemName);
+                    }
+                    else
+                    {
+                        MessageBox.Show("You don't have enough money to buy this rod.");
+                    }
+                }
+                CaughtFishList.Clear();
+                UpdateFishermanInfoPopup();
+            }
+        }
+
+        private void HideShopItem(string itemName)
+        {
+            Button itemButton = ShopMenu.FindName(itemName) as Button;
+            if (itemButton != null)
+            {
+                itemButton.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        // Метод для оновлення після зміни приманки
+        //private void OnBaitChanged()
+        //{
+        //    BaitInfoPopup.DataContext = _mainFacade.fisherman.bait;
+        //    BaitIcon.Source = _mainFacade.fisherman.bait.Image;
+        //    OnPropertyChanged(nameof(BaitInfoPopup));
+        //}
+
+        //// Метод для оновлення після зміни вудки
+        //private void OnRodChanged()
+        //{
+        //    RodInfoPopup.DataContext = _mainFacade.fisherman.rod;
+        //    RodIcon.Source = _mainFacade.fisherman.rod.Image;
+        //    OnPropertyChanged(nameof(RodInfoPopup));
+        //}
         public async void Fishing()
         {
             if (!FishMenu.IsOpen && CheckCollision() && !_isAnimating)
@@ -352,16 +435,7 @@ namespace FishingGame.ViewModel
             }
         }
 
-        public int _totalCost = 0;
-        public string TotalFishCostText
-        {
-            get => $"Total Fish Cost: {_totalCost}";
-            private set
-            {
-                _totalCost = _caughtFishList.Sum(fish => fish.Cost);
-                OnPropertyChanged(nameof(TotalFishCostText));
-            }
-        }
+        
 
         public void UpdateFishermanInfoPopup()
         {

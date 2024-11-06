@@ -13,7 +13,6 @@ namespace FishingGame.Model
         public List<Bait> Baits = new List<Bait>();
         public List<Rod> Rods = new List<Rod>();
 
-
         Rod rod;
         Bait bait;
         public string LocationBackground { get; set; }
@@ -81,38 +80,72 @@ namespace FishingGame.Model
 
         private void InitializeShop()
         {
-            Image image;
+            //Baits
             Bait bait2 = Baits[1].Clone();
-            image = (Image)fishingWindow.FindName("Bait2");
-            image.Source = bait2.Image;
+            var imageBait2 = (Button)fishingWindow.FindName("Bait2");
+            if (imageBait2 != null && imageBait2.Content is StackPanel panel2)
+            {
+                var image = panel2.Children.OfType<Image>().FirstOrDefault();
+                image.Source = bait2.Image;
+            }
 
             Bait bait3 = Baits[2].Clone();
-            image = (Image)fishingWindow.FindName("Bait3");
-            image.Source = bait3.Image;
+            var imageBait3 = (Button)fishingWindow.FindName("Bait3");
+            if (imageBait3 != null && imageBait3.Content is StackPanel panel3)
+            {
+                var image = panel3.Children.OfType<Image>().FirstOrDefault();
+                image.Source = bait3.Image;
+            }
 
             Bait bait4 = Baits[3].Clone();
-            image = (Image)fishingWindow.FindName("Bait4");
-            image.Source = bait4.Image;
+            var imageBait4 = (Button)fishingWindow.FindName("Bait4");
+            if (imageBait4 != null && imageBait4.Content is StackPanel panel4)
+            {
+                var image = panel4.Children.OfType<Image>().FirstOrDefault();
+                image.Source = bait4.Image;
+            }
 
             Bait bait5 = Baits[4].Clone();
-            image = (Image)fishingWindow.FindName("Bait5");
-            image.Source = bait5.Image;
+            var imageBait5 = (Button)fishingWindow.FindName("Bait5");
+            if (imageBait5 != null && imageBait5.Content is StackPanel panel5)
+            {
+                var image = panel5.Children.OfType<Image>().FirstOrDefault();
+                image.Source = bait5.Image;
+            }
 
+            //Rods
             Rod rod2 = Rods[1].Clone();
-            image = (Image)fishingWindow.FindName("Rod2");
-            image.Source = rod2.Image;
+            var imageRod2 = (Button)fishingWindow.FindName("Rod2");
+            if (imageBait2 != null && imageBait2.Content is StackPanel panel6)
+            {
+                var image = panel6.Children.OfType<Image>().FirstOrDefault();
+                image.Source = rod2.Image;
+            }
 
             Rod rod3 = Rods[2].Clone();
-            image = (Image)fishingWindow.FindName("Rod3");
-            image.Source = rod3.Image;
+            var imageRod3 = (Button)fishingWindow.FindName("Rod3");
+            if (imageRod3 != null && imageRod3.Content is StackPanel panel7)
+            {
+                var image = panel7.Children.OfType<Image>().FirstOrDefault();
+                image.Source = rod3.Image;
+            }
 
             Rod rod4 = Rods[3].Clone();
-            image = (Image)fishingWindow.FindName("Rod4");
-            image.Source = rod4.Image;
+            var imageRod4 = (Button)fishingWindow.FindName("Rod4");
+            if (imageRod4 != null && imageRod4.Content is StackPanel panel8)
+            {
+                var image = panel8.Children.OfType<Image>().FirstOrDefault();
+                image.Source = rod2.Image;
+            }
 
             Rod rod5 = Rods[4].Clone();
-            image = (Image)fishingWindow.FindName("Rod5");
-            image.Source = rod5.Image;
+            var imageRod5 = (Button)fishingWindow.FindName("Rod5");
+            if (imageRod5 != null && imageRod5.Content is StackPanel panel9)
+            {
+                var image = panel9.Children.OfType<Image>().FirstOrDefault();
+                image.Source = rod5.Image;
+            }
+
         }
     }
 }
