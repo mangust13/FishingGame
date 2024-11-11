@@ -22,7 +22,6 @@ namespace FishingGame.ViewModel
 
         public ObservableCollection<string> Locations { get; set; }
 
-
         public StartViewModel(MainFacade facade)
         {
             SelectedLocation = "Sea";

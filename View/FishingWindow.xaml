@@ -78,7 +78,7 @@
 
         <!--Fishing menu-->
         <Rectangle x:Name="StartFishingRect" Width="35" Height="140"
-           Margin="400, 55, 0,0" Stroke="Black" StrokeThickness="3"/>
+           Margin="400, 55, 0,0"/>
 
         <Popup x:Name="fishMenu" PlacementTarget="{Binding ElementName=fishermanImage}" IsOpen="False">
             <Border BorderThickness="1" BorderBrush="Black" Background="LightGray">
@@ -125,61 +125,61 @@
 
         <!--Shop-->
         <Rectangle x:Name="ShopRect" Width="100" Height="100"
-            Margin="-180,-65,100,100" Stroke="Black" StrokeThickness="3"/>
+            Margin="-180,-65,100,100"/>
 
         <Popup x:Name="shopMenu" PlacementTarget="{Binding ElementName=fishermanImage}" IsOpen="False">
             <Border BorderThickness="1" BorderBrush="Black" Background="LightGray">
                 <StackPanel Orientation="Horizontal">
-                    <Button Width="40" Height="60" Margin="5" x:Name="Bait2"
+                    <Button x:Name="Bait2"
                             Command="{Binding BuyShopCommand}" CommandParameter="Bait2">
                         <StackPanel>
                             <Image Source="../Assets/Baits/Bait2.jpg" Stretch="Fill" Width="40" Height="40"/>
                             <TextBlock Text="30" TextAlignment="Center"/>
                         </StackPanel>
                     </Button>
-                    <Button Width="40" Height="60" Margin="5" x:Name="Bait3"
+                    <Button x:Name="Bait3"
                             Command="{Binding BuyShopCommand}" CommandParameter="Bait3" >
                         <StackPanel>
                             <Image Source="../Assets/Baits/Bait3.jpg" Stretch="Fill" Width="40" Height="40"/>
                             <TextBlock Text="50" TextAlignment="Center"/>
                         </StackPanel>
                     </Button>
-                    <Button Width="40" Height="60" Margin="5" x:Name="Bait4"
+                    <Button x:Name="Bait4"
                             Command="{Binding BuyShopCommand}" CommandParameter="Bait4">
                         <StackPanel>
                             <Image Source="../Assets/Baits/Bait4.jpg" Stretch="Fill" Width="40" Height="40"/>
                             <TextBlock Text="90" TextAlignment="Center"/>
                         </StackPanel>
                     </Button>
-                    <Button Width="40" Height="60" Margin="5" x:Name="Bait5"
+                    <Button x:Name="Bait5"
                             Command="{Binding BuyShopCommand}" CommandParameter="Bait5">
                         <StackPanel>
                             <Image Source="../Assets/Baits/Bait5.jpg" Stretch="Fill" Width="40" Height="40"/>
                             <TextBlock Text="130" TextAlignment="Center"/>
                         </StackPanel>
                     </Button>
-                    <Button Width="40" Height="60" Margin="5" x:Name="Rod2"
+                    <Button x:Name="Rod2"
                             Command="{Binding BuyShopCommand}" CommandParameter="Rod2">
                         <StackPanel>
                             <Image Source="../Assets/Rods/Rod2.jpg" Stretch="Fill" Width="40" Height="40"/>
                             <TextBlock Text="30" TextAlignment="Center"/>
                         </StackPanel>
                     </Button>
-                    <Button Width="40" Height="60" Margin="5" x:Name="Rod3"
+                    <Button x:Name="Rod3"
                             Command="{Binding BuyShopCommand}" CommandParameter="Rod3">
                         <StackPanel>
                             <Image Source="../Assets/Rods/Rod3.jpg" Stretch="Fill" Width="40" Height="40"/>
                             <TextBlock Text="50" TextAlignment="Center"/>
                         </StackPanel>
                     </Button>
-                    <Button Width="40" Height="60" Margin="5" x:Name="Rod4"
+                    <Button x:Name="Rod4"
                             Command="{Binding BuyShopCommand}" CommandParameter="Rod4">
                         <StackPanel>
                             <Image Source="../Assets/Rods/Rod4.jpg" Stretch="Fill" Width="40" Height="40"/>
                             <TextBlock Text="90" TextAlignment="Center"/>
                         </StackPanel>
                     </Button>
-                    <Button Width="40" Height="60" Margin="5" x:Name="Rod5"
+                    <Button x:Name="Rod5"
                             Command="{Binding BuyShopCommand}" CommandParameter="Rod5">
                         <StackPanel>
                             <Image Source="../Assets/Rods/Rod5.jpg" Stretch="Fill" Width="40" Height="40"/>

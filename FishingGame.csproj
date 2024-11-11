@@ -17,7 +17,6 @@
     <None Remove="Assets\Baits\Bait3.jpg" />
     <None Remove="Assets\Baits\Bait4.jpg" />
     <None Remove="Assets\Baits\Bait4.png" />
-    <None Remove="Assets\Baits\Bait4NoBack.png" />
     <None Remove="Assets\Baits\Bait5.jpg" />
     <None Remove="Assets\Fishermen\FishermanAnimation\Animation1.png" />
     <None Remove="Assets\Fishermen\FishermanAnimation\Animation2.png" />
@@ -52,7 +51,6 @@
   <ItemGroup>
     <Resource Include="Assets\Baits\Bait2.jpg" />
     <Resource Include="Assets\Baits\Bait4.png" />
-    <Resource Include="Assets\Baits\Bait4NoBack.png" />
     <Resource Include="Assets\Rods\Rod2.jpg" />
   </ItemGroup>
 

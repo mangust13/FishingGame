@@ -192,7 +192,6 @@ namespace FishingGame.ViewModel
                         _totalCost -= selectedBait.Cost;
                         _mainFacade.fisherman.bait = selectedBait;
                         OnPropertyChanged(nameof(TotalFishCostText));
-                        //OnBaitChanged();
                         ShopMenu.IsOpen = false;
                         HideShopItem(itemName);
                     }
@@ -211,7 +210,6 @@ namespace FishingGame.ViewModel
                         _totalCost -= selectedRod.Cost;
                         _mainFacade.fisherman.rod = selectedRod;
                         OnPropertyChanged(nameof(TotalFishCostText));
-                        //OnRodChanged();
                         ShopMenu.IsOpen = false;
                         HideShopItem(itemName);
                     }
@@ -234,21 +232,6 @@ namespace FishingGame.ViewModel
             }
         }
 
-        // Метод для оновлення після зміни приманки
-        //private void OnBaitChanged()
-        //{
-        //    BaitInfoPopup.DataContext = _mainFacade.fisherman.bait;
-        //    BaitIcon.Source = _mainFacade.fisherman.bait.Image;
-        //    OnPropertyChanged(nameof(BaitInfoPopup));
-        //}
-
-        //// Метод для оновлення після зміни вудки
-        //private void OnRodChanged()
-        //{
-        //    RodInfoPopup.DataContext = _mainFacade.fisherman.rod;
-        //    RodIcon.Source = _mainFacade.fisherman.rod.Image;
-        //    OnPropertyChanged(nameof(RodInfoPopup));
-        //}
         public async void Fishing()
         {
             if (!FishMenu.IsOpen && CheckCollision() && !_isAnimating)
@@ -411,12 +394,13 @@ namespace FishingGame.ViewModel
 
         private async Task CheckEndGameCondition(Fish selectedFish)
         {
-            await Task.Delay(50);
+            await Task.Delay(100);
 
-            if (selectedFish.Name == "Shark")
+            if (selectedFish.Name == "Perch")
             {
+                Window w = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
                 _mainFacade.ShowEndGameWindow();
-                Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive)?.Close();
+                w.Close();
             }
         }
         public void DisplayFishCost()
@@ -434,8 +418,6 @@ namespace FishingGame.ViewModel
                 OnPropertyChanged(nameof(CaughtFishList));
             }
         }
-
-        
 
         public void UpdateFishermanInfoPopup()
         {

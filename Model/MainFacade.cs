@@ -116,7 +116,7 @@ namespace FishingGame.Model
             //Rods
             Rod rod2 = Rods[1].Clone();
             var imageRod2 = (Button)fishingWindow.FindName("Rod2");
-            if (imageBait2 != null && imageBait2.Content is StackPanel panel6)
+            if (imageRod2 != null && imageRod2.Content is StackPanel panel6)
             {
                 var image = panel6.Children.OfType<Image>().FirstOrDefault();
                 image.Source = rod2.Image;
