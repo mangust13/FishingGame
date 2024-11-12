@@ -396,7 +396,7 @@ namespace FishingGame.ViewModel
         {
             await Task.Delay(100);
 
-            if (selectedFish.Name == "Perch")
+            if (selectedFish.Name == "Shark")
             {
                 Window w = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
                 _mainFacade.ShowEndGameWindow();

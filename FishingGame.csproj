@@ -33,10 +33,6 @@
     <None Remove="Assets\Fishes\Shark.png" />
     <None Remove="Assets\Fishes\Tuna.png" />
     <None Remove="Assets\Lake.png" />
-    <None Remove="Assets\Objects\FishermanIcon.png" />
-    <None Remove="Assets\Objects\Rod1.jpg" />
-    <None Remove="Assets\Objects\SeaBait.png" />
-    <None Remove="Assets\Objects\SeaRod.png" />
     <None Remove="Assets\Rods\Rod1.jpg" />
     <None Remove="Assets\Rods\Rod2.jpg" />
     <None Remove="Assets\Rods\Rod3.jpg" />
@@ -80,8 +76,7 @@
     <Resource Include="Assets\Fishes\SeaDevil.png" />
     <Resource Include="Assets\Fishes\Tuna.png" />
     <Resource Include="Assets\Lake.png" />
-    <Resource Include="Assets\Objects\FishermanIcon.png" />
-    <Resource Include="Assets\Objects\SeaRod.png" />
+    <Resource Include="Assets\Fishermen\FishermanIcon.png" />
     <Resource Include="Assets\Rods\Rod1.jpg" />
     <Resource Include="Assets\Rods\Rod3.jpg" />
     <Resource Include="Assets\Rods\Rod4.jpg" />

@@ -25,7 +25,7 @@
             </Image.Margin>
         </Image>
 
-        <Image x:Name="FishermanIcon" Source="/Assets/Objects/FishermanIcon.png" Width="60" Height="60" 
+        <Image x:Name="FishermanIcon" Source="../Assets/Fishermen/FishermanIcon.png" Width="60" Height="60" 
         Margin="0,0,-800,750" MouseDown="FishermanIcon_MouseDown"/>
         <Rectangle Width="60" Height="60"
             Margin="0,0,-800,750" Stroke="Black" StrokeThickness="3"/>
@@ -51,7 +51,7 @@
 
 
         <!--Bait-->
-        <Image x:Name="BaitIcon" Source="/Assets/Baits/Bait1.jpg" Width="60" Height="60" 
+        <Image x:Name="BaitIcon" Source="../Assets/Baits/Bait1.jpg" Width="60" Height="60" 
             Margin="0,0,-1400,750" MouseDown="BaitIcon_MouseDown"/>
         <Rectangle  Width="60" Height="60" Margin="0,0,-1400,750" Stroke="Black" StrokeThickness="3"/>
         <Popup x:Name="BaitInfoPopup" PlacementTarget="{Binding ElementName=BaitIcon}" Margin="20" Placement="Bottom" IsOpen="False">
